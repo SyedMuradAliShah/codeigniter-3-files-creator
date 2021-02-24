@@ -1,0 +1,69 @@
+{
+    "name": "codeigniter-3-files-creator",
+    "displayName": "Codeigniter 3 Files Creator",
+    "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create model, controller, etc with a few clicks.",
+    "icon": "assets/icon.png",
+    "version": "0.0.1",
+    "publisher": "SyedMuradAliShah",
+    "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
+    "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
+    "license" : "(ISC OR GPL-3.0)",
+    "funding": {
+        "type" : "patreon",
+        "url" : "https://www.patreon.com/FocDownloads"
+      },
+    "engines": {
+        "vscode": "^1.53.2"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:make.controller",
+        "onCommand:make.model",
+        "onCommand:make.helper",
+        "onCommand:make.library",
+        "onCommand:make.language",
+        "onCommand:make.htaccess"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "make.controller",
+                "title": " CI3 make:controller"
+            },
+            {
+                "command": "make.model",
+                "title": " CI3 make:model"
+            },
+            {
+                "command": "make.helper",
+                "title": " CI3 make:helper"
+            },
+            {
+                "command": "make.library",
+                "title": " CI3 make:library"
+            },
+            {
+                "command": "make.language",
+                "title": " CI3 make:language"
+            },
+            {
+                "command": "make.htaccess",
+                "title": " CI3  make:htaccess"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6",
+        "eslint": "^4.11.0",
+        "@types/node": "^7.0.43",
+        "@types/mocha": "^2.2.42"
+    }
+}
