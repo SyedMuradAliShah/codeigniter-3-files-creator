@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         
 class ` + capitalize.capitalize(val) + `_model extends CI_Model {
                         
-public function login(){
+public function create(){
                         
                                 
 }

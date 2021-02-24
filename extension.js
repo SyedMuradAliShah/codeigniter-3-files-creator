@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const fs = require('fs');
 const path = require("path");
+const mCrud = require("./commands/mCrud");
 const mModel = require("./commands/mModel");
 const mController = require("./commands/mController");
 const mLibrary = require("./commands/mlibrary");
@@ -24,6 +25,10 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
+
+	let crud = vscode.commands.registerCommand('make.crud', function () {
+		mModel(vscode, fs, path, pathwork);
+	});
 
 	let model = vscode.commands.registerCommand('make.model', function () {
 		mModel(vscode, fs, path, pathwork);
@@ -50,6 +55,7 @@ function activate(context) {
 	});
 
 
+	context.subscriptions.push(crud);
 	context.subscriptions.push(model);
 	context.subscriptions.push(controller);
 	context.subscriptions.push(library);

@@ -33,6 +33,14 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller {
     {
                 
     }
+    public function save()
+    {
+                
+    }
+    public function delete()
+    {
+                
+    }
         
 }
         

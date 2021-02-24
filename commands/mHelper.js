@@ -8,7 +8,7 @@ module.exports = function(vscode, fs, path, pathdir) {
             vscode.window.showErrorMessage("Helper file name required.");
 
         } else {
-            var pathfile = path.join(pathdir + "/application/helpers", capitalize.capitalize(val) + "_helper") + ".php";
+            var pathfile = path.join(pathdir + "/application/helpers", capitalize.capitalize(val)) + "_helper.php";
             fs.access(pathfile, function(err) {
                 if (!err) {
                     vscode.window.showWarningMessage("Name of file already exists  !");
@@ -24,7 +24,7 @@ function secure(){
 
 }
                         
-/* End of file ` + val + `.php */
+/* End of file ` + val + `_helper.php */
     
                         `);
                         fs.close(fd);

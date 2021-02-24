@@ -1,17 +1,17 @@
 {
     "name": "codeigniter-3-files-creator",
     "displayName": "Codeigniter 3 Files Creator",
-    "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create model, controller, etc with a few clicks.",
+    "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create crud, model, controller, etc with a few clicks.",
     "icon": "assets/icon.png",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "SyedMuradAliShah",
     "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
     "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
-    "license" : "(ISC OR GPL-3.0)",
+    "license": "(ISC OR GPL-3.0)",
     "funding": {
-        "type" : "patreon",
-        "url" : "https://www.patreon.com/FocDownloads"
-      },
+        "type": "patreon",
+        "url": "https://www.patreon.com/FocDownloads"
+    },
     "engines": {
         "vscode": "^1.53.2"
     },
@@ -19,6 +19,7 @@
         "Other"
     ],
     "activationEvents": [
+        "onCommand:make.curd",
         "onCommand:make.controller",
         "onCommand:make.model",
         "onCommand:make.helper",
@@ -30,12 +31,16 @@
     "contributes": {
         "commands": [
             {
-                "command": "make.controller",
-                "title": " CI3 make:controller"
+                "command": "make.crud",
+                "title": " CI3 make:crud"
             },
             {
                 "command": "make.model",
                 "title": " CI3 make:model"
+            },
+            {
+                "command": "make.controller",
+                "title": " CI3 make:controller"
             },
             {
                 "command": "make.helper",

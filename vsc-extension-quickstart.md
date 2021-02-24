@@ -5,6 +5,7 @@ Creating files never been so easy, CI3 Files Creator bring you comands to create
 Press `F1` then type `CI3` and you will see a bunch of commands.
 
 ### Commands
+- CI3 make:crud
 - CI3 make:model
 - CI3 make:controller
 - CI3 make:library
@@ -13,6 +14,7 @@ Press `F1` then type `CI3` and you will see a bunch of commands.
 - CI3 make:htaccess
 
 **Features**
+- Create crud (include Model & Controller)
 - Create model file
 - Create controller file
 - Create library file
