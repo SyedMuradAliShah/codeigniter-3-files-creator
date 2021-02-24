@@ -27,7 +27,7 @@ function activate(context) {
 	// The commandId parameter must match the command field in package.json
 
 	let crud = vscode.commands.registerCommand('make.crud', function () {
-		mModel(vscode, fs, path, pathwork);
+		mCrud(vscode, fs, path, pathwork);
 	});
 
 	let model = vscode.commands.registerCommand('make.model', function () {

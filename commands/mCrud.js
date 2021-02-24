@@ -6,31 +6,25 @@ module.exports = function (vscode, fs, path, pathdir) {
         placeHolder: "Enter controller & model name"
     }).then(function (val) {
         if (val.length == 0) {
-            vscode.window.showErrorMessage("Controller and model file name required.");
+            vscode.window.showErrorMessage("Controller & model file name required.");
             return;
         }
-        var controller = path.join(pathdir + "/application/controllers", capitalize.capitalize(val)) + ".php";
-        var model = path.join(pathdir + "/application/models", capitalize.capitalize(val)) + "_model.php";
+        var controllerPath = path.join(pathdir + "/application/controllers", capitalize.capitalize(val)) + ".php";
+        var modelPath = path.join(pathdir + "/application/models", capitalize.capitalize(val)) + "_model.php";
 
-        fs.access(controller, function (err) {
-            if (!err) {
+        fs.access(controllerPath, function (controllerExists) {
+            if (!controllerExists) {
                 vscode.window.showWarningMessage("Controller already exists!");
-                return;
             } else {
-                fs.access(model, function (err) {
-                    if (!err) {
+                fs.access(modelPath, function (modelExists) {
+                    if (!modelExists) {
                         vscode.window.showWarningMessage("Model already exists!");
-                        return;
-                    }
-                });
-            }
-        });
+                    } else {
 
-
-        fs.open(model, "w+", function (err, fd) {
-            if (err) throw err;
-            fs.writeFileSync(fd, `<?php 
-
+                        fs.open(modelPath, "w+", function (err, fd) {
+                            if (err) throw err;
+                            fs.writeFileSync(fd, `<?php 
+                
 defined('BASEPATH') OR exit('No direct script access allowed');
                         
 class ` + capitalize.capitalize(val) + `_model extends CI_Model 
@@ -62,19 +56,13 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
 }
                         
 /* End of file ` + capitalize.capitalize(val) + `_model.php */
-    
-                        `);
-            fs.close(fd);
-            var openPath = vscode.Uri.file(model); //A request file path
+                    
+                                        `);
+                            fs.close(fd);
 
-            vscode.workspace.openTextDocument(openPath).then(function (val) {
-                vscode.window.showTextDocument(val);
-            });
-        });
-
-        fs.open(controller, "w+", function (err, fd) {
-            if (err) throw err;
-            fs.writeFileSync(fd, `<?php 
+                            fs.open(controllerPath, "w+", function (err, fd) {
+                                if (err) throw err;
+                                fs.writeFileSync(fd, `<?php 
         
 defined('BASEPATH') OR exit('No direct script access allowed');
         
@@ -109,15 +97,20 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
     /* End of file  ` + val + `.php */
         
                             `);
-            fs.close(fd);
-            var openPath = vscode.Uri.file(controller); //A request file path
+                                fs.close(fd);
 
-            vscode.workspace.openTextDocument(openPath).then(function (val) {
-                vscode.window.showTextDocument(val);
-            });
+                                var controllerOpenPath = vscode.Uri.file(controllerPath); //A request file path
+                                vscode.workspace.openTextDocument(controllerOpenPath).then(function (val) {
+                                    vscode.window.showTextDocument(val);
+                                });
+                            });
 
+                        });
+                    }
+                });
+
+            }
         });
         vscode.window.showInformationMessage('Controller & Model successfully! ');
-
     });
 }
