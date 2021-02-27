@@ -17,8 +17,10 @@ Press `F1` then type `CI3` and you will see a bunch of commands.
 
 If ask for folder?
 - Give a name or Leave it empty. (If folder not found it will create new, else choose existing one.)
+
 Asked for file name?
 - Give file name
+
 And that's all.
 
 
