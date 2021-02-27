@@ -3,10 +3,13 @@
 const vscode = require('vscode');
 const fs = require('fs');
 const path = require("path");
+
+const mSimpleAuth = require("./commands/mSimpleAuth");
+const mSimpleAuthAPI = require("./commands/mSimpleAuthAPI");
 const mCrud = require("./commands/mCrud");
 const mModel = require("./commands/mModel");
 const mController = require("./commands/mController");
-const mLibrary = require("./commands/mlibrary");
+const mLibrary = require("./commands/mLibrary");
 const mLanguage = require("./commands/mLanguage");
 const mHelper = require("./commands/mHelper");
 const mHtaccess = require("./commands/mHtaccess");
@@ -26,10 +29,15 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 
+	let simple_auth = vscode.commands.registerCommand('make.simple_auth', function () {
+		mSimpleAuth(vscode, fs, path, pathwork);
+	});
+	let simple_auth_api = vscode.commands.registerCommand('make.simple_auth_api', function () {
+		mSimpleAuthAPI(vscode, fs, path, pathwork);
+	});
 	let crud = vscode.commands.registerCommand('make.crud', function () {
 		mCrud(vscode, fs, path, pathwork);
 	});
-
 	let model = vscode.commands.registerCommand('make.model', function () {
 		mModel(vscode, fs, path, pathwork);
 	});
@@ -54,7 +62,9 @@ function activate(context) {
 		mHtaccess(vscode, fs, path, pathwork);
 	});
 
-
+	
+	context.subscriptions.push(simple_auth);
+	context.subscriptions.push(simple_auth_api);
 	context.subscriptions.push(crud);
 	context.subscriptions.push(model);
 	context.subscriptions.push(controller);

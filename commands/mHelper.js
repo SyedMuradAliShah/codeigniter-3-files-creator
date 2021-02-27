@@ -1,42 +1,42 @@
 var capitalize = require('./functions');
-module.exports = function(vscode, fs, path, pathdir) {
+module.exports = function (vscode, fs, path, pathdir) {
     vscode.window.showInputBox({
         prompt: "name of helper",
         placeHolder: "Enter helper model"
-    }).then(function(val) {
+    }).then(function (val) {
         if (val.length == 0) {
             vscode.window.showErrorMessage("Helper file name required.");
 
         } else {
             var pathfile = path.join(pathdir + "/application/helpers", capitalize.capitalize(val)) + "_helper.php";
-            fs.access(pathfile, function(err) {
+            fs.access(pathfile, function (err) {
                 if (!err) {
-                    vscode.window.showWarningMessage("Name of file already exists  !");
+                    vscode.window.showWarningMessage("Helper file name already exists!");
 
                 } else {
 
 
-                    fs.open(pathfile, "w+", function(err, fd) {
+                    fs.open(pathfile, "w+", function (err, fd) {
                         if (err) throw err;
                         fs.writeFileSync(fd, `<?php 
-function secure(){
+function secureFunction(){
 
 
 }
                         
-/* End of file ` + val + `_helper.php */
+/* End of file ` + capitalize.capitalize(val) + `_helper.php */
     
                         `);
                         fs.close(fd);
                         var openPath = vscode.Uri.file(pathfile); //A request file path
 
-                        vscode.workspace.openTextDocument(openPath).then(function(val) {
+                        vscode.workspace.openTextDocument(openPath).then(function (val) {
                             vscode.window.showTextDocument(val);
 
                         });
 
                     });
-                    vscode.window.showInformationMessage('Created successfully! ');
+                    vscode.window.showInformationMessage('Helper created successfully! ');
 
                 }
 

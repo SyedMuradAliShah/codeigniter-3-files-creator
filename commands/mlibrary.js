@@ -12,7 +12,7 @@ module.exports = function(vscode, fs, path, pathdir) {
             var pathfile = path.join(pathdir + "/application/libraries", capitalize.capitalize(val)) + ".php";
             fs.access(pathfile, function(err) {
                 if (!err) {
-                    vscode.window.showWarningMessage("Name of file already exists  !");
+                    vscode.window.showWarningMessage("Library file name already exists  !");
 
                 } else {
 
@@ -33,7 +33,7 @@ public function __construct()
                             
 }
                                                 
-/* End of file ` + val + `.php */
+/* End of file ` + capitalize.capitalize(val) + `.php */
     
                         `);
                         fs.close(fd);
@@ -45,7 +45,7 @@ public function __construct()
                         });
 
                     });
-                    vscode.window.showInformationMessage('Created successfully! ');
+                    vscode.window.showInformationMessage('Library created successfully! ');
 
                 }
 

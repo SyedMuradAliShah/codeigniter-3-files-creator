@@ -2,7 +2,7 @@ module.exports = function(vscode, fs, path, pathdir) {
     var pathfile = path.join(pathdir, ".htaccess");
     fs.access(pathfile, function(err) {
         if (!err) {
-            vscode.window.showWarningMessage(".htaccess already exists  !");
+            vscode.window.showWarningMessage(".htaccess file already exists  !");
 
         } else {
 
@@ -24,7 +24,7 @@ RewriteRule .* index.php?/$0 [PT,L]
                 vscode.window.showTextDocument(val);
 
             });
-            vscode.window.showInformationMessage('Created successfully! ');
+            vscode.window.showInformationMessage('Htaccess created successfully! ');
 
         }
 

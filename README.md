@@ -15,7 +15,16 @@ Creating files never been so easy, CI3 Files Creator bring you comands to create
 ### How to use?
 Press `F1` then type `CI3` and you will see a bunch of commands.
 
+If ask for folder?
+- Give a name or Leave it empty. (If folder not found it will create new, else choose existing one.)
+Asked for file name?
+- Give file name
+And that's all.
+
+
 ### Commands
+- CI3 make:simple_auth
+- CI3 make:simple_auth_api
 - CI3 make:crud
 - CI3 make:model
 - CI3 make:controller
@@ -25,6 +34,8 @@ Press `F1` then type `CI3` and you will see a bunch of commands.
 - CI3 make:htaccess
 
 **Features**
+- Create simple_auth
+- Create simple_auth_api
 - Create crud (include Model & Controller)
 - Create model file
 - Create controller file
@@ -34,3 +45,9 @@ Press `F1` then type `CI3` and you will see a bunch of commands.
 - Create htaccess file
 
 > This repository is public, your contribution will be appricated.
+
+**Please Donate To Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
+
+[![Donate](https://i.imgur.com/W6ggNR5.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+
+[![Donate](https://i.imgur.com/2v7VgCu.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
