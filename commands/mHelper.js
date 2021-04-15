@@ -2,7 +2,7 @@ var capitalize = require('./functions');
 module.exports = function (vscode, fs, path, pathdir) {
     vscode.window.showInputBox({
         prompt: "name of helper",
-        placeHolder: "Enter helper model"
+        placeHolder: "Enter helper file"
     }).then(function (val) {
         if (val.length == 0) {
             vscode.window.showErrorMessage("Helper file name required.");
