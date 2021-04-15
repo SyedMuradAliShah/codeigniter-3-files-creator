@@ -24,7 +24,16 @@ Asked for file name?
 And that's all.
 
 
+You can create migration files now with CI3 Files Creator.
+
+### How to use Migration
+1. enable migration `application\config\migration.php` here.
+2. `migration_type` must be `timestamp`, if you set to Sequential migration won't work.
+And that's all.
+
+
 ### Commands
+- CI3 make:migration
 - CI3 make:simple_auth
 - CI3 make:simple_auth_api
 - CI3 make:crud
@@ -36,6 +45,7 @@ And that's all.
 - CI3 make:htaccess
 
 **Features**
+- Create migration
 - Create simple_auth
 - Create simple_auth_api
 - Create crud (include Model & Controller)
