@@ -1,6 +1,6 @@
 # Codeignter 3 Files Creator for vcode
 [![Latest Release](https://vsmarketplacebadge.apphb.com/version-short/SyedMuradAliShah.codeigniter-3-files-creator.svg)](https://marketplace.visualstudio.com/items?itemName=SyedMuradAliShah.codeigniter-3-files-creator)
-[![Installs](https://vsmarketplacebadge.apphb.com/installs/SyedMuradAliShah.codeigniter-3-files-creator.svg)](https://marketplace.visualstudio.com/items?itemName=SyedMuradAliShah.codeigniter-3-files-creator)
+[![Installs](https://vsmarketplacebadge.apphb.com/installs-short/SyedMuradAliShah.codeigniter-3-files-creator.svg)](https://marketplace.visualstudio.com/items?itemName=SyedMuradAliShah.codeigniter-3-files-creator)
 [![Rating](https://vsmarketplacebadge.apphb.com/rating-short/SyedMuradAliShah.codeigniter-3-files-creator.svg)](https://marketplace.visualstudio.com/items?itemName=SyedMuradAliShah.codeigniter-3-files-creator#review-details)
 [![Fork](https://img.shields.io/github/forks/SyedMuradAliShah/codeigniter-3-files-creator.svg)](https://github.com/SyedMuradAliShah/codeigniter-3-files-creator)
 [![All Contributors](https://img.shields.io/badge/all_contributors-0-blue.svg?style=flat)](https://github.com/SyedMuradAliShah/codeigniter-3-files-creator#contributors)
