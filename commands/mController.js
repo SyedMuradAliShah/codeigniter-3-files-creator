@@ -7,9 +7,9 @@ module.exports = function (vscode, fs, path, pathdir) {
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Controllers main folder selected.");
-            var new_path = "/application/controllers";
+            var new_controller_path = "/application/controllers";
         } else {
-            var new_path = "/application/controllers/" + folderName;
+            var new_controller_path = "/application/controllers/" + folderName;
         }
         vscode.window.showInputBox({
             prompt: "name of controller",

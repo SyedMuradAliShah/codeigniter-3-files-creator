@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.0.7] - 2021-06-08
+- Minor bugs fixed
+
 ## [0.0.6] - 2021-06-08
 - Functionality improved
 

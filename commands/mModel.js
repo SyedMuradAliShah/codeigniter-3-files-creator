@@ -7,9 +7,9 @@ module.exports = function (vscode, fs, path, pathdir) {
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Models main folder selected.");
-            var new_path = "/application/models";
+            var new_model_path = "/application/models";
         } else {
-            var new_path = "/application/models/" + folderName;
+            var new_model_path = "/application/models/" + folderName;
         }
         vscode.window.showInputBox({
             prompt: "name of model",
