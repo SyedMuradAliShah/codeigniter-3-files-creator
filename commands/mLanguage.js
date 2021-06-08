@@ -33,10 +33,12 @@ module.exports = function (vscode, fs, path, pathdir) {
                                     if (err) throw err;
                                     fs.writeFileSync(fd, `<?php 
 $lang['helloWorld'] = 'hello world'; 
-    
-/* End of file ` + capitalize.capitalize(val) + `.php */
 
-            `);
+
+
+/* End of file ` + capitalize.capitalize(val) + `.php and path  /application/language/` + val + `.php */
+
+`);
                                     fs.close(fd);
 
                                 });

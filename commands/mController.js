@@ -7,6 +7,9 @@ module.exports = function (vscode, fs, path, pathdir) {
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Controllers main folder selected.");
+            var new_path = "/application/controllers";
+        } else {
+            var new_path = "/application/controllers/" + folderName;
         }
         vscode.window.showInputBox({
             prompt: "name of controller",
@@ -45,10 +48,11 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller {
                 
     }
 }
-        
-    /* End of file  ` + capitalize.capitalize(val) + `.php */
-        
-                            `);
+
+/* End of file ` + capitalize.capitalize(val) + `.php and path `+new_controller_path+`/` + val + `.php */
+
+
+`);
                             fs.close(fd);
                             var openPath = vscode.Uri.file(pathfile); //A request file path
 

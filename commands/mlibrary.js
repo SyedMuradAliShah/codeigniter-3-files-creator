@@ -32,10 +32,11 @@ public function __construct()
                         
                             
 }
-                                                
-/* End of file ` + capitalize.capitalize(val) + `.php */
-    
-                        `);
+
+
+/* End of file ` + capitalize.capitalize(val) + `.php and path  /application/libraries/` + val + `.php */
+
+`);
                         fs.close(fd);
                         var openPath = vscode.Uri.file(pathfile); //A request file path
 

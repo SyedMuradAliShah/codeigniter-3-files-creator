@@ -23,10 +23,11 @@ function secureFunction(){
 
 
 }
-                        
-/* End of file ` + capitalize.capitalize(val) + `_helper.php */
-    
-                        `);
+
+
+/* End of file ` + capitalize.capitalize(val) + `.php and path  /application/helpers/` + val + `_helper.php */
+
+`);
                         fs.close(fd);
                         var openPath = vscode.Uri.file(pathfile); //A request file path
 

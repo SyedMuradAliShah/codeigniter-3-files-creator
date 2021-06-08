@@ -84,9 +84,10 @@ class Migration_` + capitalize.capitalize(val) + ` extends CI_Migration
     }
 }
 
-/* End of file ` + migrationFile + `.php */
-    
-                        `);
+
+/* End of file ` + capitalize.capitalize(val) + `.php and path  /application/migrations/` + val + `.php */
+
+`);
                         fs.close(fd);
                         var openPath = vscode.Uri.file(pathfile); //A request file path
 

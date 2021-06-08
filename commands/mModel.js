@@ -7,6 +7,9 @@ module.exports = function (vscode, fs, path, pathdir) {
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Models main folder selected.");
+            var new_path = "/application/models";
+        } else {
+            var new_path = "/application/models/" + folderName;
         }
         vscode.window.showInputBox({
             prompt: "name of model",
@@ -39,10 +42,11 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
     }                        
                         
 }
-                        
-/* End of file ` + capitalize.capitalize(val) + `_model.php */
-    
-                        `);
+
+
+/* End of file ` + capitalize.capitalize(val) + `_model.php and path `+new_model_path+`/` + val + `_model.php */
+
+`);
                             fs.close(fd);
                             var openPath = vscode.Uri.file(pathfile); //A request file path
                             vscode.workspace.openTextDocument(openPath).then(function (val) {

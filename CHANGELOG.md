@@ -1,10 +1,11 @@
 # Change Log
 All changes will be updated here.
 
+## [0.0.6] - 2021-06-08
+- Functionality improved
 
 ## [0.0.5] - 2021-04-15
 - Migration added
-
 
 ## [0.0.4] - 2021-02-27
 - Simple Auth Added

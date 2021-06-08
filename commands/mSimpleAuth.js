@@ -7,7 +7,13 @@ module.exports = function (vscode, fs, path, pathdir) {
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Controllers & models main folder selected.");
+            var new_controller_path = "/application/controllers";
+            var new_model_path = "/application/models";
+        } else {
+            var new_controller_path = "/application/controllers/" + folderName;
+            var new_model_path = "/application/models/" + folderName;
         }
+
         vscode.window.showInputBox({
             prompt: "name of auth controller/model",
             placeHolder: "Enter controller & model name"
@@ -95,10 +101,12 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
         return false;
     }
 }
-                        
-/* End of file ` + capitalize.capitalize(val) + `_model.php */
-                    
-                                        `);
+
+
+/* End of file ` + capitalize.capitalize(val) + `_model.php and path `+new_model_path+`/` + val + `_model.php */
+
+
+`);
                                 fs.close(fd);
 
                                 fs.open(controllerPath, "w+", function (err, fd) {
@@ -209,8 +217,9 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
     }
 
 }
-        
-    /* End of file  ` + capitalize.capitalize(val) + `.php */
+
+
+/* End of file ` + capitalize.capitalize(val) + `.php and path `+new_controller_path+`/` + val + `.php */
         
                             `);
                                     fs.close(fd);
