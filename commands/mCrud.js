@@ -77,13 +77,18 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
     }
 }
 
-/* End of file ` + capitalize.capitalize(val) + `_model.php and path `+new_model_path+`/` + val + `_model.php */
+/* End of file ` + capitalize.capitalize(val) + `_model.php and path ` + new_model_path + `/` + val + `_model.php */
                     
 `);
                                 fs.close(fd);
 
                                 fs.open(controllerPath, "w+", function (err, fd) {
                                     if (err) throw err;
+                                    if (folderName.length == 0)
+                                        var loadModelNamePath = folderName + '/' + capitalize.lowercase(val) + '_model';
+                                    else
+                                        var loadModelNamePath = capitalize.lowercase(val) + '_model';
+
                                     fs.writeFileSync(fd, `<?php 
         
 defined('BASEPATH') OR exit('No direct script access allowed');
@@ -93,7 +98,7 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('` + folderName + `/` + capitalize.capitalize(val) + `_model', '` + val + `');
+        $this->load->model('` + loadModelNamePath + `', '` + capitalize.lowercase(val) + `');
     }
 
     public function create()
@@ -118,7 +123,7 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
 }
 
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path `+new_controller_path+`/` + val + `.php */
+/* End of file ` + capitalize.capitalize(val) + `.php and path ` + new_controller_path + `/` + val + `.php */
 
 `);
                                     fs.close(fd);

@@ -23,8 +23,14 @@ Asked for file name?
 
 And that's all.
 
+### How to use Template
+1. Load template library `application\config\autoload.php` here.
+2. Now in controller you have to call 
+`$this->TEMPLATE_FILE_NAME->load('VIEW_FILE_NAME', $data);`
+in my case let me show.
+`$this->template->load('page', $data);`
+And that's all.
 
-You can create migration files now with CI3 Files Creator.
 
 ### How to use Migration
 1. enable migration `application\config\migration.php` here.
@@ -33,6 +39,7 @@ And that's all.
 
 
 ### Commands
+- CI3 make:template
 - CI3 make:migration
 - CI3 make:simple_auth
 - CI3 make:simple_auth_api
@@ -45,6 +52,7 @@ And that's all.
 - CI3 make:htaccess
 
 **Features**
+- Create template
 - Create migration
 - Create simple_auth
 - Create simple_auth_api

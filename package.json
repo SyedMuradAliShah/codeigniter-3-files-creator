@@ -3,7 +3,7 @@
     "displayName": "Codeigniter 3 Files Creator",
     "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create auth, crud, model, controller, migration etc with a few clicks.",
     "icon": "assets/icon.png",
-    "version": "0.0.7",
+    "version": "0.0.8",
     "publisher": "SyedMuradAliShah",
     "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
     "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
@@ -19,6 +19,7 @@
         "Other"
     ],
     "activationEvents": [
+        "onCommand:make.template",
         "onCommand:make.migration",
         "onCommand:make.simple_auth",
         "onCommand:make.simple_auth_api",
@@ -33,6 +34,10 @@
     "main": "./extension",
     "contributes": {
         "commands": [
+            {
+                "command": "make.template",
+                "title": " CI3 make:template"
+            },
             {
                 "command": "make.migration",
                 "title": " CI3 make:migration"

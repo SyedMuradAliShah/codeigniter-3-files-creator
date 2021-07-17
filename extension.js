@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require("path");
 
+const mTemplate = require("./commands/mTemplate");
 const mMigration = require("./commands/mMigration");
 const mSimpleAuth = require("./commands/mSimpleAuth");
 const mSimpleAuthAPI = require("./commands/mSimpleAuthAPI");
@@ -30,6 +31,9 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 
+	let template = vscode.commands.registerCommand('make.template', function () {
+		mTemplate(vscode, fs, path, pathwork);
+	});
 	let migration = vscode.commands.registerCommand('make.migration', function () {
 		mMigration(vscode, fs, path, pathwork);
 	});
@@ -67,6 +71,7 @@ function activate(context) {
 	});
 
 	
+	context.subscriptions.push(template);
 	context.subscriptions.push(migration);
 	context.subscriptions.push(simple_auth);
 	context.subscriptions.push(simple_auth_api);
