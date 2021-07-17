@@ -25,7 +25,8 @@ And that's all.
 
 ### How to use Template
 1. Load template library `application\config\autoload.php` here.
-2. Now in controller you have to call 
+2. Goto view `application\views\TEMPLATE_FILE_NAME` and uncomment to load header and footer.
+3. Now in controller you have to call 
 `$this->TEMPLATE_FILE_NAME->load('VIEW_FILE_NAME', $data);`
 in my case let me show.
 `$this->template->load('page', $data);`

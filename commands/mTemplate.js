@@ -47,7 +47,7 @@ module.exports = function (vscode, fs, path, pathdir) {
 /**
 * This content will include loading view and its data.
 */
-echo $template_contents
+echo $template_contents;
 
 
 /**

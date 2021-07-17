@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.0.9] - 2021-07-17
+- Minor bug in template fixed
+
 ## [0.0.8] - 2021-07-17
 - Template added
 - Bug in curd fixed
