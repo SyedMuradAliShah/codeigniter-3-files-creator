@@ -82,9 +82,6 @@ function activate(context) {
 	context.subscriptions.push(language);
 	context.subscriptions.push(helper);
 	context.subscriptions.push(htaccess);
-
-
-
 }
 exports.activate = activate;
 

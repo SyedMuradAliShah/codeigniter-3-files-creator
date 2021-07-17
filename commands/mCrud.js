@@ -84,7 +84,7 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
 
                                 fs.open(controllerPath, "w+", function (err, fd) {
                                     if (err) throw err;
-                                    if (folderName.length == 0)
+                                    if (folderName.length != 0)
                                         var loadModelNamePath = folderName + '/' + capitalize.lowercase(val) + '_model';
                                     else
                                         var loadModelNamePath = capitalize.lowercase(val) + '_model';
