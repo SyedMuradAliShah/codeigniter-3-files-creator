@@ -16,7 +16,7 @@ module.exports = function (vscode, fs, path, pathdir) {
         var viewDir = pathdir + view_path;
 
         var libraryPath = path.join(libraryDir, capitalize.capitalize(val)) + ".php";
-        var viewPath = path.join(viewDir, capitalize.capitalize(val)) + ".php";
+        var viewPath = path.join(viewDir, capitalize.lowercase(val)) + ".php";
 
         fs.access(libraryPath, function (libraryExists) {
             if (!libraryExists) {
@@ -55,7 +55,7 @@ echo $template_contents;
 */
 //$this->load->view('layout/footer');
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path ` + view_path + val + `.php */
+/* End of file ` + capitalize.lowercase(val) + `.php and path ` + view_path + capitalize.lowercase(val) + `.php */
 
 ?>`);
                             fs.close(fd);
@@ -97,7 +97,7 @@ class ` + capitalize.capitalize(val) + ` {
         }
 }
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path ` + library_path + val + `.php */
+/* End of file ` + capitalize.capitalize(val) + `.php and path ` + library_path + capitalize.lowercase(val) + `.php */
 
 `);
                                 fs.close(fd);
