@@ -1,7 +1,10 @@
 # Change Log
 All changes will be updated here.
 
-## [0.1.0] - 2021-07-17
+## [0.1.2] - 2021-08-05
+- Minor bugs fix
+
+## [0.1.1] - 2021-07-17
 - Bug in helper fixed
 - Bug in template fixed
 

@@ -3,7 +3,7 @@
     "displayName": "Codeigniter 3 Files Creator",
     "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create auth, crud, model, controller, migration etc with a few clicks.",
     "icon": "assets/icon.png",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "publisher": "SyedMuradAliShah",
     "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
     "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
@@ -19,63 +19,63 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:make.template",
-        "onCommand:make.migration",
-        "onCommand:make.simple_auth",
-        "onCommand:make.simple_auth_api",
-        "onCommand:make.crud",
-        "onCommand:make.controller",
-        "onCommand:make.model",
-        "onCommand:make.helper",
-        "onCommand:make.library",
-        "onCommand:make.language",
-        "onCommand:make.htaccess"
+        "onCommand:make.ci3_template",
+        "onCommand:make.ci3_migration",
+        "onCommand:make.ci3_simple_auth",
+        "onCommand:make.ci3_simple_auth_api",
+        "onCommand:make.ci3_crud",
+        "onCommand:make.ci3_controller",
+        "onCommand:make.ci3_model",
+        "onCommand:make.ci3_helper",
+        "onCommand:make.ci3_library",
+        "onCommand:make.ci3_language",
+        "onCommand:make.ci3_htaccess"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [
             {
-                "command": "make.template",
+                "command": "make.ci3_template",
                 "title": " CI3 make:template"
             },
             {
-                "command": "make.migration",
+                "command": "make.ci3_migration",
                 "title": " CI3 make:migration"
             },
             {
-                "command": "make.simple_auth",
+                "command": "make.ci3_simple_auth",
                 "title": " CI3 make:simple_auth"
             },
             {
-                "command": "make.simple_auth_api",
+                "command": "make.ci3_simple_auth_api",
                 "title": " CI3 make:simple_auth_api"
             },
             {
-                "command": "make.crud",
+                "command": "make.ci3_crud",
                 "title": " CI3 make:crud"
             },
             {
-                "command": "make.model",
+                "command": "make.ci3_model",
                 "title": " CI3 make:model"
             },
             {
-                "command": "make.controller",
+                "command": "make.ci3_controller",
                 "title": " CI3 make:controller"
             },
             {
-                "command": "make.helper",
+                "command": "make.ci3_helper",
                 "title": " CI3 make:helper"
             },
             {
-                "command": "make.library",
+                "command": "make.ci3_library",
                 "title": " CI3 make:library"
             },
             {
-                "command": "make.language",
+                "command": "make.ci3_language",
                 "title": " CI3 make:language"
             },
             {
-                "command": "make.htaccess",
+                "command": "make.ci3_htaccess",
                 "title": " CI3  make:htaccess"
             }
         ]

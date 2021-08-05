@@ -31,42 +31,42 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 
-	let template = vscode.commands.registerCommand('make.template', function () {
+	let template = vscode.commands.registerCommand('make.ci3_template', function () {
 		mTemplate(vscode, fs, path, pathwork);
 	});
-	let migration = vscode.commands.registerCommand('make.migration', function () {
+	let migration = vscode.commands.registerCommand('make.ci3_migration', function () {
 		mMigration(vscode, fs, path, pathwork);
 	});
-	let simple_auth = vscode.commands.registerCommand('make.simple_auth', function () {
+	let simple_auth = vscode.commands.registerCommand('make.ci3_simple_auth', function () {
 		mSimpleAuth(vscode, fs, path, pathwork);
 	});
-	let simple_auth_api = vscode.commands.registerCommand('make.simple_auth_api', function () {
+	let simple_auth_api = vscode.commands.registerCommand('make.ci3_simple_auth_api', function () {
 		mSimpleAuthAPI(vscode, fs, path, pathwork);
 	});
-	let crud = vscode.commands.registerCommand('make.crud', function () {
+	let crud = vscode.commands.registerCommand('make.ci3_crud', function () {
 		mCrud(vscode, fs, path, pathwork);
 	});
-	let model = vscode.commands.registerCommand('make.model', function () {
+	let model = vscode.commands.registerCommand('make.ci3_model', function () {
 		mModel(vscode, fs, path, pathwork);
 	});
 
-	let controller = vscode.commands.registerCommand('make.controller', function () {
+	let controller = vscode.commands.registerCommand('make.ci3_controller', function () {
 		mController(vscode, fs, path, pathwork);
 	});
 
-	let library = vscode.commands.registerCommand('make.library', function () {
+	let library = vscode.commands.registerCommand('make.ci3_library', function () {
 		mLibrary(vscode, fs, path, pathwork);
 	});
 
-	let language = vscode.commands.registerCommand('make.language', function () {
+	let language = vscode.commands.registerCommand('make.ci3_language', function () {
 		mLanguage(vscode, fs, path, pathwork);
 	});
 
-	let helper = vscode.commands.registerCommand('make.helper', function () {
+	let helper = vscode.commands.registerCommand('make.ci3_helper', function () {
 		mHelper(vscode, fs, path, pathwork);
 	});
 
-	let htaccess = vscode.commands.registerCommand('make.htaccess', function () {
+	let htaccess = vscode.commands.registerCommand('make.ci3_htaccess', function () {
 		mHtaccess(vscode, fs, path, pathwork);
 	});
 
