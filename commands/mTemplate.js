@@ -5,7 +5,7 @@ module.exports = function (vscode, fs, path, pathdir) {
     var view_path = "/application/views/";
 
     vscode.window.showInputBox({
-        prompt: "name of library/template",
+        prompt: "Enter name of library/template",
         placeHolder: "Enter library & view file name"
     }).then(function (val) {
         if (val.length == 0) {
@@ -55,22 +55,21 @@ echo $template_contents;
 */
 //$this->load->view('layout/footer');
 
-/* End of file ` + capitalize.lowercase(val) + `.php and path ` + view_path + capitalize.lowercase(val) + `.php */
-
-?>`);
+/* End of file ${capitalize.lowercase(val)}.php and path ${viewPath.replace(pathdir,'')} */
+`);
                             fs.close(fd);
 
                             fs.open(libraryPath, "w+", function (err, fd) {
                                 if (err) throw err;
                                 fs.writeFileSync(fd, `<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ` + capitalize.capitalize(val) + ` {
+class ${capitalize.capitalize(val)} {
         private $template_data = [];
         
         /**
          * This function will use to set template data.
          * 
-         * @param mix $name this will be the name of the variable which will show in view ` + capitalize.lowercase(val) + `.
+         * @param mix $name this will be the name of the variable which will show in view ${capitalize.lowercase(val)}.
          * @param mix $value this will be the return value from the view, passed to variable $view.
          * @return void 
          */
@@ -84,12 +83,12 @@ class ` + capitalize.capitalize(val) + ` {
          * 
          * @param mix $view this will be the view file name.
          * @param array $view_data this will be the data you want to pass to the view.
-         * @param mix $template your default template name is ` + capitalize.lowercase(val) + `, if changed, use your template file own name.
+         * @param mix $template your default template name is ${capitalize.lowercase(val)}, if changed, use your template file own name.
          * @param bool $return type of your view.
          * @return void 
          */
     
-        function load($view = '' , $view_data = [], $template = '` + capitalize.lowercase(val) + `', $return = FALSE)
+        function load($view = '' , $view_data = [], $template = '${capitalize.lowercase(val)}', $return = FALSE)
         {               
             $this->CI =& get_instance();
             $this->_set('template_contents', $this->CI->load->view($view, $view_data, TRUE));            
@@ -97,8 +96,7 @@ class ` + capitalize.capitalize(val) + ` {
         }
 }
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path ` + library_path + capitalize.lowercase(val) + `.php */
-
+/* End of file ${capitalize.lowercase(val)}.php and path ${libraryPath.replace(pathdir,'')} */
 `);
                                 fs.close(fd);
 

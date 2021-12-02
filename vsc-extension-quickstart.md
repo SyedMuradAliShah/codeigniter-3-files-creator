@@ -12,6 +12,22 @@
 
 Creating files never been so easy, CI3 Files Creator bring you comands to create necessary with a few step.
 
+**Features**
+- Create template
+- Create migration add table
+- Create migration rename table
+- Create migration add column to table
+- Create migration rename column in table
+- Create simple_auth
+- Create simple_auth_api
+- Create crud (include Model & Controller)
+- Create model file
+- Create controller file
+- Create library file
+- Create language file
+- Create helper file
+- Create htaccess file
+
 ### How to use?
 Press `F1` then type `CI3` and you will see a bunch of commands.
 
@@ -26,47 +42,67 @@ And that's all.
 ### How to use Template
 1. Load template library `application\config\autoload.php` here.
 2. Now in controller you have to call 
-`$this->TEMPLATE_FILE_NAME->load('VIEW_FILE_NAME', $data);`
+- `$this->TEMPLATE_FILE_NAME->load('VIEW_FILE_NAME', $data);`
+
 in my case let me show.
-`$this->template->load('page', $data);`
+- `$this->template->load('page', $data);`
+
 And that's all.
 
 
 ### How to use Migration
 1. enable migration `application\config\migration.php` here.
 2. `migration_type` must be `timestamp`, if you set to Sequential migration won't work.
+
 And that's all.
 
+### How to use Migration Add Column to a table
+1. All you need here to enter a valid format i.e `add_column_to_table` you can see following examples.
+- You need to user `add_` at the start and then use `_to_` after column and before the table name. 
+- Examples:
+- `add_name_to_users`
+- `add_first_name_to_users`
+- `add_first_name_to_users_details`
 
-### Commands
-- CI3 make:template
-- CI3 make:migration
-- CI3 make:simple_auth
-- CI3 make:simple_auth_api
-- CI3 make:crud
-- CI3 make:model
-- CI3 make:controller
-- CI3 make:library
-- CI3 make:language
-- CI3 make:helper
-- CI3 make:htaccess
 
-**Features**
-- Create template
-- Create migration
-- Create simple_auth
-- Create simple_auth_api
-- Create crud (include Model & Controller)
-- Create model file
-- Create controller file
-- Create library file
-- Create language file
-- Create helper file
-- Create htaccess file
+### How to use Migration rename Column to a table
+1. All you need here to enter a valid format i.e `rename_column_to_column2_in_table` you can see following examples.
+- You need to user `rename_` at the start and then use `_to_` after old column and then use new column name before `_in_` and then use table name at last. 
+- Examples:
+- `rename_name_to_username_in_users`
+- `rename_first_name_to_full_name_in_users`
+- `rename_first_name_to_full_name_in_users_details`
+
+
+Press `F1` then type bellow commands
+
+| Command                            |                                                Function |
+| :--------------------------------- | ------------------------------------------------------: |
+| `CI3 make:template`                |                It will create template in library file. |
+| `CI3 make:migration:add_table`     |      It will create migration file in migration folder. |
+| `CI3 make:migration:rename_table`  |      It will create migration file in migration folder. |
+| `CI3 make:migration:add_column`    |   It will create migration for adding column to a table |
+|                                    |                               file in migration folder. |
+| `CI3 make:migration:rename_column` | It will create migration for renaming column in a table |
+|                                    |                               file in migration folder. |
+| `CI3 make:simple_auth`             |            It will create controller, model of complete |
+|                                    |                                 login and registration. |
+| `CI3 make:simple_auth_api`         |      It will create controller, model of complete login |
+|                                    |           and registration and will return json format. |
+| `CI3 make:crud`                    |   It will create controller, model with crud functions. |
+| `CI3 make:model`                   |                              It will create model file. |
+| `CI3 make:controller`              |                         It will create controller file. |
+| `CI3 make:library`                 |          It will create library file in library folder. |
+| `CI3 make:language`                |        It will create language file in language folder. |
+| `CI3 make:helper`                  |            It will create helper file in helper folder. |
+| `CI3 make:htaccess`                |                It will create `.htaccess` file in root. |
+
+
 
 > This repository is public, your contribution will be appricated.
 
-**Please Donate To Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
+
+**Please Donate To Support Me, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
 
 [![Donate](https://i.imgur.com/W6ggNR5.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
 

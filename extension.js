@@ -5,7 +5,10 @@ const fs = require('fs');
 const path = require("path");
 
 const mTemplate = require("./commands/mTemplate");
-const mMigration = require("./commands/mMigration");
+const mMigrationAddTable = require("./commands/mMigrationAddTable");
+const mMigrationRenameTable = require("./commands/mMigrationRenameTable");
+const mMigrationAddColumn = require("./commands/mMigrationAddColumn");
+const mMigrationRenameColumn = require("./commands/mMigrationRenameColumn");
 const mSimpleAuth = require("./commands/mSimpleAuth");
 const mSimpleAuthAPI = require("./commands/mSimpleAuthAPI");
 const mCrud = require("./commands/mCrud");
@@ -34,8 +37,17 @@ function activate(context) {
 	let template = vscode.commands.registerCommand('make.ci3_template', function () {
 		mTemplate(vscode, fs, path, pathwork);
 	});
-	let migration = vscode.commands.registerCommand('make.ci3_migration', function () {
-		mMigration(vscode, fs, path, pathwork);
+	let migration_add_table = vscode.commands.registerCommand('make.ci3_migration_add_table', function () {
+		mMigrationAddTable(vscode, fs, path, pathwork);
+	});
+	let migration_rename_table = vscode.commands.registerCommand('make.ci3_migration_rename_table', function () {
+		mMigrationRenameTable(vscode, fs, path, pathwork);
+	});
+	let migration_add_column = vscode.commands.registerCommand('make.ci3_migration_add_column', function () {
+		mMigrationAddColumn(vscode, fs, path, pathwork);
+	});
+	let migration_rename_column = vscode.commands.registerCommand('make.ci3_migration_rename_column', function () {
+		mMigrationRenameColumn(vscode, fs, path, pathwork);
 	});
 	let simple_auth = vscode.commands.registerCommand('make.ci3_simple_auth', function () {
 		mSimpleAuth(vscode, fs, path, pathwork);
@@ -72,7 +84,10 @@ function activate(context) {
 
 	
 	context.subscriptions.push(template);
-	context.subscriptions.push(migration);
+	context.subscriptions.push(migration_add_table);
+	context.subscriptions.push(migration_add_column);
+	context.subscriptions.push(migration_rename_column);
+	context.subscriptions.push(migration_rename_table);
 	context.subscriptions.push(simple_auth);
 	context.subscriptions.push(simple_auth_api);
 	context.subscriptions.push(crud);

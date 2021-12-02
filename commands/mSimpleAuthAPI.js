@@ -2,19 +2,14 @@ var capitalize = require('./functions');
 module.exports = function (vscode, fs, path, pathdir) {
 
     vscode.window.showInputBox({
-        prompt: "name of auth folder",
+        prompt: "Enter name of auth folder",
         placeHolder: "Enter name to create or choose auth folder leave empty for default"
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Controllers & models main folder selected.");
-            var new_controller_path = "/application/controllers";
-            var new_model_path = "/application/models";
-        } else {
-            var new_controller_path = "/application/controllers/" + folderName;
-            var new_model_path = "/application/models/" + folderName;
         }
         vscode.window.showInputBox({
-            prompt: "name of auth controller/model",
+            prompt: "Enter name of auth controller/model",
             placeHolder: "Enter controller & model name"
         }).then(function (val) {
             if (val.length == 0) {
@@ -47,10 +42,9 @@ module.exports = function (vscode, fs, path, pathdir) {
                             fs.open(modelPath, "w+", function (err, fd) {
                                 if (err) throw err;
                                 fs.writeFileSync(fd, `<?php 
-                
 defined('BASEPATH') OR exit('No direct script access allowed');
-                        
-class ` + capitalize.capitalize(val) + `_model extends CI_Model 
+
+class ${capitalize.capitalize(val)}_model extends CI_Model 
 {
     /*
     You can change users_table to your own.
@@ -101,23 +95,21 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
     }
 }
 
-/* End of file ` + capitalize.capitalize(val) + `_model.php and path `+new_model_path+`/` + val + `_model.php */
-
+/* End of file ${capitalize.capitalize(val)}_model.php and path ${modelPath.replace(pathdir,'')}  */
 `);
                                 fs.close(fd);
 
                                 fs.open(controllerPath, "w+", function (err, fd) {
                                     if (err) throw err;
                                     fs.writeFileSync(fd, `<?php 
-        
 defined('BASEPATH') OR exit('No direct script access allowed');
-        
-class ` + capitalize.capitalize(val) + ` extends CI_Controller
+
+class ${capitalize.capitalize(val)} extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('` + folderName + `/` + capitalize.capitalize(val) + `_model', '` + val + `');
+        $this->load->model('${folderName}/${capitalize.capitalize(val)}_model', '${val}');
     }
 
 
@@ -136,7 +128,7 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
             if ($this->form_validation->run() == FALSE) {
                 return $this->json_output(400, ['status' => 400, 'message' => 'Bad Request', 'error' => true, 'errors' => validation_errors_array($this->form_validation->error_array())]);
             }
-            if ($query = $this->` + val + `->login($this->input->post('email'))) {
+            if ($query = $this->${val}->login($this->input->post('email'))) {
                 if ($query->num_rows()) {
                     $row = $query->row();
                     if (password_verify($this->input->post('password'), $row->password)) {
@@ -191,7 +183,7 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
             if ($this->form_validation->run() == FALSE) {
                 return $this->json_output(400, ['status' => 400, 'message' => 'Bad Request', 'error' => true, 'errors' => validation_errors_array($this->form_validation->error_array())]);
             }
-            if ($this->` + val + `->register($this->input->post('email'), password_hash($this->input->post('password'), PASSWORD_BCRYPT))) {
+            if ($this->${val}->register($this->input->post('email'), password_hash($this->input->post('password'), PASSWORD_BCRYPT))) {
 
                 return $this->json_output(201, ['status' => 201, 'message' => 'Account created successful!', 'error' => false]);
             } else {
@@ -220,9 +212,7 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
 }
 
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path `+new_controller_path+`/` + val + `.php */
-
-
+/* End of file ${capitalize.capitalize(val)}.php and path ${controllerPath.replace(pathdir,'')} */
 `);
                                     fs.close(fd);
 

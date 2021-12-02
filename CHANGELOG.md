@@ -1,6 +1,13 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.3] - 2021-12-02
+- Functionality & helping text improved
+- Bug in fixed
+- Migration commands updated
+- New migration add column to table added
+- New migration renew column in table added
+
 ## [0.1.2] - 2021-08-05
 - Minor bugs fix
 

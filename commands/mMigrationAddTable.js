@@ -1,65 +1,60 @@
 var capitalize = require('./functions');
 module.exports = function (vscode, fs, path, pathdir) {
     vscode.window.showInputBox({
-        prompt: "name of the table",
+        prompt: "Enter name of the table",
         placeHolder: "Enter the name of the table"
     }).then(function (val) {
         if (val.length == 0) {
             vscode.window.showErrorMessage("Table name is required.");
-
         } else {
-            var d = new Date();
-            var months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
-            var FileTimeStamp = d.getFullYear() + months[d.getMonth()] + d.getDate() + d.getHours() + d.getMinutes() + d.getSeconds();
+            const date = new Date();
+            var FileTimeStamp = date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2);
 
-            var migrationDir = pathdir + "/application/migrations";
+            var migrationDir = `${pathdir}/application/migrations`;
             var migrationFile = FileTimeStamp + '_' + val;
-            var pathfile = path.join(migrationDir, migrationFile) + ".php";
+            var pathfile = `${path.join(migrationDir, migrationFile)}.php`;
 
             fs.access(pathfile, function (err) {
                 if (!err) {
                     vscode.window.showWarningMessage("Table file name already exists!");
-
                 } else {
-
                     if (!fs.existsSync(migrationDir)) {
                         fs.mkdirSync(migrationDir);
-                        vscode.window.showInformationMessage("migrations folder created in applications.");
+                        vscode.window.showInformationMessage("Migration folder created in applications.");
                     }
 
                     fs.open(pathfile, "w+", function (err, fd) {
                         if (err) throw err;
                         fs.writeFileSync(fd, `<?php
-
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Migration_` + capitalize.capitalize(val) + ` extends CI_Migration
+class Migration_${capitalize.capitalize(val)} extends CI_Migration
 {
-    protected $tableName  = '` + val + `';
+    protected $tableName  = '${val}';
 
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'id' => array(
-                'type' => 'INT',
-                'constraint' => 4,
-                'unsigned' => TRUE,
-                'auto_increment' => TRUE
-            ),
+        $this->dbforge->add_field([
+            'id' => [
+                'type'              => 'INT',
+                'constraint'        => 4,
+                'unsigned'          => TRUE,
+                'auto_increment'    => TRUE
+            ],
             'username' => [
-                'type' => 'VARCHAR',
-                'constraint' => '30',
+                'type'              => 'VARCHAR',
+                'constraint'        => '30',
             ],
             'password' => [
-                'type' => 'VARCHAR',
-                'constraint' => '100',
+                'type'              => 'VARCHAR',
+                'constraint'        => '100',
             ],
             'status' => [
-                'type'           => 'ENUM',
-                'constraint'     => ['active', 'suspend'],
-                'default'        => 'active',
+                'type'              => 'ENUM',
+                'constraint'        => ['active', 'suspend'],
+                'default'           => 'active',
             ]
-        ));
+        ]);
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->add_field("updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP");
         $this->dbforge->add_field("created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
@@ -72,9 +67,9 @@ class Migration_` + capitalize.capitalize(val) + ` extends CI_Migration
 
         //Inserting first row
         // $this->db->insert($this->tableName, [
-        //     'username' => 'murad_ali',
-        //     'phone' => '123-123-7834',
-        //     'password' => password_hash('123456', PASSWORD_BCRYPT),
+        //     'username'   => 'murad_ali',
+        //     'phone'      => '123-123-7834',
+        //     'password'   => password_hash('123456', PASSWORD_BCRYPT),
         // ]);
     }
 
@@ -85,29 +80,17 @@ class Migration_` + capitalize.capitalize(val) + ` extends CI_Migration
 }
 
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path  /application/migrations/` + val + `.php */
-
+/* End of file ${migrationFile}.php and path ${pathfile.replace(pathdir,'')} */
 `);
                         fs.close(fd);
                         var openPath = vscode.Uri.file(pathfile); //A request file path
-
                         vscode.workspace.openTextDocument(openPath).then(function (val) {
                             vscode.window.showTextDocument(val);
-
                         });
-
                     });
                     vscode.window.showInformationMessage('Migration table ' + migrationFile + ' has been created successfully! ');
-
                 }
-
-
             });
-
-
         }
-
     });
-
-
 }

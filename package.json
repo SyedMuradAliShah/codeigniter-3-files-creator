@@ -3,7 +3,7 @@
     "displayName": "Codeigniter 3 Files Creator",
     "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create auth, crud, model, controller, migration etc with a few clicks.",
     "icon": "assets/icon.png",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "publisher": "SyedMuradAliShah",
     "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
     "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
@@ -20,7 +20,10 @@
     ],
     "activationEvents": [
         "onCommand:make.ci3_template",
-        "onCommand:make.ci3_migration",
+        "onCommand:make.ci3_migration_add_table",
+        "onCommand:make.ci3_migration_rename_table",
+        "onCommand:make.ci3_migration_add_column",
+        "onCommand:make.ci3_migration_rename_column",
         "onCommand:make.ci3_simple_auth",
         "onCommand:make.ci3_simple_auth_api",
         "onCommand:make.ci3_crud",
@@ -33,14 +36,25 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [
-            {
+        "commands": [{
                 "command": "make.ci3_template",
                 "title": " CI3 make:template"
             },
             {
-                "command": "make.ci3_migration",
-                "title": " CI3 make:migration"
+                "command": "make.ci3_migration_add_table",
+                "title": " CI3 make:migration:add_table"
+            },
+            {
+                "command": "make.ci3_migration_rename_table",
+                "title": " CI3 make:migration:rename_table"
+            },
+            {
+                "command": "make.ci3_migration_add_column",
+                "title": " CI3 make:migration:add_column"
+            },
+            {
+                "command": "make.ci3_migration_rename_column",
+                "title": " CI3 make:migration:rename_column"
             },
             {
                 "command": "make.ci3_simple_auth",

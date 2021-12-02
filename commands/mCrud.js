@@ -2,17 +2,13 @@ var capitalize = require('./functions');
 module.exports = function (vscode, fs, path, pathdir) {
 
     vscode.window.showInputBox({
-        prompt: "name of folder",
+        prompt: "Enter name of folder",
         placeHolder: "Enter name of create or choose folder leave empty for default"
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Controllers & models main folder selected.");
-            var new_controller_path = "/application/controllers";
-            var new_model_path = "/application/models";
-        } else {
-            var new_controller_path = "/application/controllers/" + folderName;
-            var new_model_path = "/application/models/" + folderName;
         }
+        
         vscode.window.showInputBox({
             prompt: "name of controller/model",
             placeHolder: "Enter controller & model name"
@@ -58,17 +54,17 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
     
     public function insert()
     {
-
+        
     }
 
     public function select()
     {
-
+        
     }
 
     public function update()
     {
-
+        
     }
 
     public function delete()
@@ -77,11 +73,10 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
     }
 }
 
-/* End of file ` + capitalize.capitalize(val) + `_model.php and path ` + new_model_path + `/` + val + `_model.php */
+/* End of file ${capitalize.capitalize(val)}_model.php and path ${modelPath.replace(pathdir,'')} */
                     
 `);
                                 fs.close(fd);
-
                                 fs.open(controllerPath, "w+", function (err, fd) {
                                     if (err) throw err;
                                     if (folderName.length != 0)
@@ -90,7 +85,6 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
                                         var loadModelNamePath = capitalize.lowercase(val) + '_model';
 
                                     fs.writeFileSync(fd, `<?php 
-        
 defined('BASEPATH') OR exit('No direct script access allowed');
         
 class ` + capitalize.capitalize(val) + ` extends CI_Controller
@@ -98,22 +92,22 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('` + loadModelNamePath + `', '` + capitalize.lowercase(val) + `');
+        $this->load->model('${loadModelNamePath}', '${val}');
     }
 
     public function create()
     {
-
+        
     }
 
     public function view()
     {
-
+        
     }
 
     public function update()
     {
-
+        
     }
 
     public function delete()
@@ -123,11 +117,9 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
 }
 
 
-/* End of file ` + capitalize.capitalize(val) + `.php and path ` + new_controller_path + `/` + val + `.php */
-
+/* End of file ${capitalize.capitalize(val)}.php and path ${controllerPath.replace(pathdir,'')} */
 `);
                                     fs.close(fd);
-
                                     var controllerOpenPath = vscode.Uri.file(controllerPath); //A request file path
                                     vscode.workspace.openTextDocument(controllerOpenPath).then(function (val) {
                                         vscode.window.showTextDocument(val);

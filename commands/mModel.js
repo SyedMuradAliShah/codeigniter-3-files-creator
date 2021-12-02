@@ -2,17 +2,14 @@ var capitalize = require('./functions');
 
 module.exports = function (vscode, fs, path, pathdir) {
     vscode.window.showInputBox({
-        prompt: "name of folder",
+        prompt: "Enter name of folder",
         placeHolder: "Enter name to create or choose folder leave empty for default"
     }).then(function (folderName) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Models main folder selected.");
-            var new_model_path = "/application/models";
-        } else {
-            var new_model_path = "/application/models/" + folderName;
         }
         vscode.window.showInputBox({
-            prompt: "name of model",
+            prompt: "Enter name of model",
             placeHolder: "Enter model name without _model"
         }).then(function (val) {
             if (val.length == 0) {
@@ -34,7 +31,7 @@ module.exports = function (vscode, fs, path, pathdir) {
 
 defined('BASEPATH') OR exit('No direct script access allowed');
                         
-class ` + capitalize.capitalize(val) + `_model extends CI_Model 
+class ${capitalize.capitalize(val)}_model extends CI_Model 
 {
     public function select()
     {
@@ -44,8 +41,7 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
 }
 
 
-/* End of file ` + capitalize.capitalize(val) + `_model.php and path `+new_model_path+`/` + val + `_model.php */
-
+/* End of file ${capitalize.capitalize(val)}_model.php and path ${pathfile.replace(pathdir,'')} */
 `);
                             fs.close(fd);
                             var openPath = vscode.Uri.file(pathfile); //A request file path
