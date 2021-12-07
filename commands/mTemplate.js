@@ -162,7 +162,7 @@ class ${capitalize.capitalize(val)} {
         function load($view = '' , $view_data = [], $template = '${newFolder}${capitalize.lowercase(val)}', $return = FALSE)
         {               
             $this->CI =& get_instance();
-            $this->_set('template_contents', $this->CI->load->view($view, $view_data, TRUE));            
+            $this->_set('template_contents', $this->CI->load->view("${newFolder}{$view}", $view_data, TRUE));            
             return $this->CI->load->view($template, $this->template_data, $return);
         }
 }

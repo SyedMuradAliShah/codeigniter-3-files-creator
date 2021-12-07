@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.6] - 2021-12-07
+- Template restricted to folder
+
 ## [0.1.5] - 2021-12-07
 - Response text imporved in template
 

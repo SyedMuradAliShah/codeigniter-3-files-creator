@@ -49,8 +49,10 @@ For example if I set TEMPLATE_FILE_NAME as template and I have a view file name 
 - `$this->template->load('page');`
 - `$this->template->load('page', $data);`
 
-Or you can use sub folder like this.
+Or you can use sub folder like this. 
 - `$this->template->load('folder_name/page', $data);`
+
+> NOTE: if you used a folder for template like `user_side` then your view files must be inside theh user_side directory!
 
 And that's all.
 
