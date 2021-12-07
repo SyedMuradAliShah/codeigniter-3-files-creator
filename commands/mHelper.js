@@ -8,7 +8,7 @@ module.exports = function (vscode, fs, path, pathdir) {
             vscode.window.showErrorMessage("Helper file name required.");
 
         } else {
-            var pathfile = path.join(pathdir + "/application/helpers", capitalize.lowercase(val)) + "_helper.php";
+            var pathfile = path.join(pathdir + "/application/helpers", `${capitalize.lowercase(val)}_helper.php`);
             fs.access(pathfile, function (err) {
                 if (!err) {
                     vscode.window.showWarningMessage("Helper file name already exists!");
@@ -16,13 +16,32 @@ module.exports = function (vscode, fs, path, pathdir) {
                     fs.open(pathfile, "w+", function (err, fd) {
                         if (err) throw err;
                         fs.writeFileSync(fd, `<?php 
-function secureFunction(){
 
+if (!function_exists('is_post')) {
 
+    /**
+     * If the method of request is POST return true else false.
+     * 
+     *  @return bool  */
+    function is_post()
+    {
+        return (strtoupper($_SERVER['REQUEST_METHOD']) === 'POST')  ? true : false;
+    }
 }
 
+if (!function_exists('is_get')) {
 
-/* End of file ${capitalize.lowercase(val)}.php and path ${pathfile.replace(pathdir,'')} */
+    /**
+     * If the method of request is GET return true else false.
+     * 
+     *  @return bool  */
+    function is_get()
+    {
+        return (strtoupper($_SERVER['REQUEST_METHOD']) === 'GET')  ? true : false;
+    }
+}
+
+/* End of file ${capitalize.lowercase(val)}_helper.php and path ${pathfile.replace(pathdir,'')} */
 `);
                         fs.close(fd);
                         var openPath = vscode.Uri.file(pathfile); //A request file path

@@ -91,7 +91,8 @@ class ${capitalize.capitalize(val)}_model extends CI_Model
     public function login($email)
     {
         $this->db->where('email', $email);
-        return $this->db->get($this->users, 1);
+        $query = $this->db->get($this->users, 1);
+        return ($query->num_rows()) ? $query->row() : false;
     }
 
     public function register($email, $password)
@@ -140,42 +141,39 @@ class ${capitalize.capitalize(val)} extends CI_Controller
                 echo validation_errors();
                 return;
             }
-            if ($query = $this->${val}->login($this->input->post('email'))) {
-                if ($query->num_rows()) {
-                    $row = $query->row();
-                    if (password_verify($this->input->post('password'), $row->password)) {
-                        if ($row->status == 'active') {
+            if ($row = $this->${val}->login($this->input->post('email'))) {
+                if (password_verify($this->input->post('password'), $row->password)) {
+                    if ($row->status == 'active') {
 
-                            // When all details matched.
-                            echo 'Successfully logged-in';
-                            return;
-                        } elseif ($row->status == 'pending') {
+                        // When all details matched.
+                        echo 'Successfully logged-in';
+                        return;
+                    } elseif ($row->status == 'pending') {
 
-                            //If account status is not available
-                            echo 'Account Status Is Pending';
-                            return;
-                        } elseif ($row->status == 'suspended') {
+                        //If account status is not available
+                        echo 'Account Status Is Pending';
+                        return;
+                    } elseif ($row->status == 'suspended') {
 
-                            //If account status is not available
-                            echo 'Account Suspended';
-                            return;
-                        } elseif ($row->status == 'blocked') {
+                        //If account status is not available
+                        echo 'Account Suspended';
+                        return;
+                    } elseif ($row->status == 'blocked') {
 
-                            //If account status is not available
-                            echo 'Account Blocked';
-                            return;
-                        } else {
-
-                            //If account status is not available
-                            echo 'Unknow Status';
-                            return;
-                        }
+                        //If account status is not available
+                        echo 'Account Blocked';
+                        return;
                     } else {
 
-                        //If password is not matched
-                        echo 'Unauthorized';
+                        //If account status is not available
+                        echo 'Unknow Status';
                         return;
                     }
+                } else {
+
+                    //If password is not matched
+                    echo 'Unauthorized';
+                    return;
                 }
             } else {
 

@@ -140,8 +140,8 @@ class ${capitalize.capitalize(val)} {
         /**
          * This function will use to set template data.
          * 
-         * @param mix $name this will be the name of the variable which will show in view ${capitalize.lowercase(val)}.
-         * @param mix $value this will be the return value from the view, passed to variable $view.
+         * @param mixed $name this will be the name of the variable which will show in view ${capitalize.lowercase(val)}.
+         * @param mixed $value this will be the return value from the view, passed to variable $view.
          * @return void 
          */
         function _set($name, $value)
@@ -152,9 +152,9 @@ class ${capitalize.capitalize(val)} {
         /**
          * This function will use to load template.
          * 
-         * @param mix $view this will be the view file name.
+         * @param mixed $view this will be the view file name.
          * @param array $view_data this will be the data you want to pass to the view.
-         * @param mix $template your default template name is ${capitalize.lowercase(val)}, if changed, use your template file own name.
+         * @param mixed $template your default template name is ${capitalize.lowercase(val)}, if changed, use your template file own name.
          * @param bool $return type of your view.
          * @return void 
          */

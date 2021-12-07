@@ -90,7 +90,8 @@ class ${capitalize.capitalize(val)}_model extends CI_Model
     public function login($email)
     {
         $this->db->where('email', $email);
-        return $this->db->get($this->users, 1);
+        $query = $this->db->get($this->users, 1);
+        return ($query->num_rows()) ? $query->row() : false;
     }
 
     public function register($email, $password)
@@ -138,38 +139,35 @@ class ${capitalize.capitalize(val)} extends CI_Controller
             $this->form_validation->set_rules('password', 'password', 'required|xss_clean|strip_tags');
 
             if ($this->form_validation->run() == FALSE) {
-                return $this->json_output(400, ['status' => 400, 'message' => 'Bad Request', 'error' => true, 'errors' => validation_errors_array($this->form_validation->error_array())]);
+                return $this->json_output(400, ['status' => 400, 'message' => 'Bad Request', 'error' => true, 'errors' => ($this->form_validation->error_array())]);
             }
-            if ($query = $this->${val}->login($this->input->post('email'))) {
-                if ($query->num_rows()) {
-                    $row = $query->row();
-                    if (password_verify($this->input->post('password'), $row->password)) {
-                        if ($row->status == 'active') {
+            if ($row = $this->${val}->login($this->input->post('email'))) {
+                if (password_verify($this->input->post('password'), $row->password)) {
+                    if ($row->status == 'active') {
 
-                            // When all details matched.
-                            return $this->json_output(200, ['status' => 200, 'message' => 'Successfully logged-in', 'error' => false]);
-                        } elseif ($row->status == 'pending') {
+                        // When all details matched.
+                        return $this->json_output(200, ['status' => 200, 'message' => 'Successfully logged-in', 'error' => false]);
+                    } elseif ($row->status == 'pending') {
 
-                            //If account status is not available
-                            return $this->json_output(401, ['status' => 401, 'message' => 'Account Status Is Pending', 'error' => true]);
-                        } elseif ($row->status == 'suspended') {
+                        //If account status is not available
+                        return $this->json_output(401, ['status' => 401, 'message' => 'Account Status Is Pending', 'error' => true]);
+                    } elseif ($row->status == 'suspended') {
 
-                            //If account status is not available
-                            return $this->json_output(401, ['status' => 401, 'message' => 'Account Suspended', 'error' => true]);
-                        } elseif ($row->status == 'blocked') {
+                        //If account status is not available
+                        return $this->json_output(401, ['status' => 401, 'message' => 'Account Suspended', 'error' => true]);
+                    } elseif ($row->status == 'blocked') {
 
-                            //If account status is not available
-                            return $this->json_output(401, ['status' => 401, 'message' => 'Account Blocked', 'error' => true]);
-                        } else {
-
-                            //If account status is not available
-                            return $this->json_output(401, ['status' => 401, 'message' => 'Unknow Status', 'error' => true]);
-                        }
+                        //If account status is not available
+                        return $this->json_output(401, ['status' => 401, 'message' => 'Account Blocked', 'error' => true]);
                     } else {
 
-                        //If password is not matched
-                        return $this->json_output(401, ['status' => 401, 'message' => 'Unauthorized', 'error' => true]);
+                        //If account status is not available
+                        return $this->json_output(401, ['status' => 401, 'message' => 'Unknow Status', 'error' => true]);
                     }
+                } else {
+
+                    //If password is not matched
+                    return $this->json_output(401, ['status' => 401, 'message' => 'Unauthorized', 'error' => true]);
                 }
             } else {
 
@@ -193,7 +191,7 @@ class ${capitalize.capitalize(val)} extends CI_Controller
 
 
             if ($this->form_validation->run() == FALSE) {
-                return $this->json_output(400, ['status' => 400, 'message' => 'Bad Request', 'error' => true, 'errors' => validation_errors_array($this->form_validation->error_array())]);
+                return $this->json_output(400, ['status' => 400, 'message' => 'Bad Request', 'error' => true, 'errors' => ($this->form_validation->error_array())]);
             }
             if ($this->${val}->register($this->input->post('email'), password_hash($this->input->post('password'), PASSWORD_BCRYPT))) {
 

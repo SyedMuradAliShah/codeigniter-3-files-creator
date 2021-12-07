@@ -1,6 +1,11 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.7] - 2021-12-07
+- Critical error fixed in crud
+- Language fixed
+- Simple Auth little bit improved
+
 ## [0.1.6] - 2021-12-07
 - Template restricted to folder
 
