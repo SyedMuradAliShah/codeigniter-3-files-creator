@@ -109,6 +109,6 @@ Press `F1` then type bellow commands
 
 **You can support me by donating, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
 
-[![Donate](https://i.imgur.com/W6ggNR5.png)](://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+[![Donate](https://i.imgur.com/W6ggNR5.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
 
-[![Donate](https://i.imgur.com/2v7VgCu.png)](://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+[![Donate](https://i.imgur.com/2v7VgCu.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
