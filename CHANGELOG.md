@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.5] - 2021-12-07
+- Response text imporved in template
+
 ## [0.1.4] - 2021-12-07
 - Functionality improved
 - Template now accept folders

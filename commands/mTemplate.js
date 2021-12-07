@@ -1,7 +1,6 @@
 var capitalize = require('./functions');
 module.exports = function (vscode, fs, path, pathdir) {
     const vs_window = vscode.window;
-    let creation = false;
 
     vs_window.showInputBox({
         prompt: "Enter name of folder for views",
@@ -180,14 +179,11 @@ class ${capitalize.capitalize(val)} {
                                 }); //View Header Closed
                             }); //View Footer Closed
                         }
-                        creation = true;
                         vs_window.showInformationMessage(`View files header & footer in layout folder created.`);
                         vs_window.showInformationMessage('Template library and view created successfully!');
                     });
                 }
             });
-            if (!creation)
-                vs_window.showErrorMessage("Error occured, try again with valid folder name.");
         });
     });
 }
