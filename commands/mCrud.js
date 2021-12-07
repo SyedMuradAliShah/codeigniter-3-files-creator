@@ -8,7 +8,7 @@ module.exports = function (vscode, fs, path, pathdir) {
         if (folderName.length == 0) {
             vscode.window.showInformationMessage("Controllers & models main folder selected.");
         }
-        
+
         vscode.window.showInputBox({
             prompt: "name of controller/model",
             placeHolder: "Enter controller & model name"
@@ -32,11 +32,24 @@ module.exports = function (vscode, fs, path, pathdir) {
                             vscode.window.showWarningMessage("Model file name already exists!");
                         } else {
                             if (!fs.existsSync(modelDir)) {
+                                try {
+                                    fs.mkdirSync(modelDir, {
+                                        recursive: true
+                                    });
+                                } catch (err) {
+                                    console.log(err);
+                                }
                                 fs.mkdirSync(modelDir);
                                 vscode.window.showInformationMessage(folderName + " folder created in models.");
                             }
                             if (!fs.existsSync(controllerDir)) {
-                                fs.mkdirSync(controllerDir);
+                                try {
+                                    fs.mkdirSync(controllerDir, {
+                                        recursive: true
+                                    });
+                                } catch (err) {
+                                    console.log(err);
+                                }
                                 vscode.window.showInformationMessage(folderName + " folder created in controllers.");
                             }
                             fs.open(modelPath, "w+", function (err, fd) {

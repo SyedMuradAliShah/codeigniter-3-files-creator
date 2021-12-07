@@ -1,48 +1,111 @@
 var capitalize = require('./functions');
 module.exports = function (vscode, fs, path, pathdir) {
+    const vs_window = vscode.window;
+    let creation = false;
 
-    var library_path = "/application/libraries/";
-    var view_path = "/application/views/";
-
-    vscode.window.showInputBox({
-        prompt: "Enter name of library/template",
-        placeHolder: "Enter library & view file name"
-    }).then(function (val) {
-        if (val.length == 0) {
-            vscode.window.showErrorMessage("Library & view file name required.");
-            return;
+    vs_window.showInputBox({
+        prompt: "Enter name of folder for views",
+        placeHolder: "Enter name to create or choose folder leave empty for default"
+    }).then(function (folderName) {
+        if (folderName.length == 0) {
+            vs_window.showInformationMessage("Views main folder is selected.");
+            var newFolder = '';
+        } else {
+            var newFolder = `${folderName}/`;
         }
-        var libraryDir = pathdir + library_path;
-        var viewDir = pathdir + view_path;
 
-        var libraryPath = path.join(libraryDir, capitalize.capitalize(val)) + ".php";
-        var viewPath = path.join(viewDir, capitalize.lowercase(val)) + ".php";
+        vs_window.showInputBox({
+            prompt: "Enter name of library/template",
+            placeHolder: "Enter library & view file name"
+        }).then(function (val) {
+            if (val.length == 0) {
+                vs_window.showErrorMessage("Library & view file name required.");
+                return;
+            }
 
-        fs.access(libraryPath, function (libraryExists) {
-            if (!libraryExists) {
-                vscode.window.showWarningMessage("Library file name already exists!");
-            } else {
-                fs.access(viewPath, function (viewExists) {
-                    if (!viewExists) {
-                        vscode.window.showWarningMessage("View file name already exists!");
-                    } else {
-                        if (!fs.existsSync(viewDir)) {
-                            fs.mkdirSync(viewDir);
-                            vscode.window.showInformationMessage(folderName + " folder created in views.");
-                        }
-                        if (!fs.existsSync(libraryDir)) {
-                            fs.mkdirSync(libraryDir);
-                            vscode.window.showInformationMessage(folderName + " folder created in libraries.");
-                        }
-                        fs.open(viewPath, "w+", function (err, fd) {
-                            if (err) throw err;
-                            fs.writeFileSync(fd, `<?php
+            var library_path = "/application/libraries/";
+            var view_path = `/application/views/${folderName}`;
+
+            var libraryDir = pathdir + library_path;
+            var viewDir = pathdir + view_path;
+
+            var libraryPath = `${path.join(libraryDir, capitalize.capitalize(val))}.php`;
+            var viewPath = `${path.join(viewDir, capitalize.lowercase(val))}.php`;
+            var viewLayoutHeaderPath = `${path.join(viewDir, 'layout', 'header')}.php`;
+            var viewLayoutFooterPath = `${path.join(viewDir, 'layout', 'footer')}.php`;
+
+            fs.access(libraryPath, function (libraryExists) {
+                if (!libraryExists) {
+                    vs_window.showErrorMessage("Library file name already exists!");
+                } else {
+                    fs.access(viewPath, function (viewExists) {
+                        if (!viewExists) {
+                            vs_window.showErrorMessage("View file name already exists!");
+                        } else {
+                            if (!fs.existsSync(viewDir)) {
+                                try {
+                                    fs.mkdirSync(viewDir, {
+                                        recursive: true
+                                    });
+                                } catch (err) {
+                                    console.log(err);
+                                }
+                                vs_window.showInformationMessage(`${folderName} folder created in views.`);
+                            }
+                            if (!fs.existsSync(path.join(viewDir, 'layout'))) {
+                                try {
+                                    fs.mkdirSync(path.join(viewDir, 'layout'), {
+                                        recursive: true
+                                    });
+                                } catch (err) {
+                                    console.log(err);
+                                }
+                                vs_window.showInformationMessage(`layout folder created in ${folderName} folder in views.`);
+                            }
+                            if (!fs.existsSync(libraryDir)) {
+                                try {
+                                    fs.mkdirSync(libraryDir, {
+                                        recursive: true
+                                    });
+                                } catch (err) {
+                                    console.log(err);
+                                }
+                            }
+
+                            // Creating Header file
+                            fs.open(viewLayoutHeaderPath, "w+", function (err, fd) {
+                                if (err) throw err;
+                                fs.writeFileSync(fd, `<html>
+<head>
+    <title>Document Title</title>
+</head>
+<body>
+
+<?php /* End of file header.php and path ${viewLayoutHeaderPath.replace(pathdir,'')} */ ?>
+`);
+                                fs.close(fd);
+
+                                // Creating Footer file
+                                fs.open(viewLayoutFooterPath, "w+", function (err, fd) {
+                                    if (err) throw err;
+                                    fs.writeFileSync(fd, `<footer>
+        </footer>
+    </body>
+</html>
+                                    
+<?php /* End of file footer.php and path ${viewLayoutFooterPath.replace(pathdir,'')} */ ?>
+    `);
+                                    fs.close(fd);
+
+                                    fs.open(viewPath, "w+", function (err, fd) {
+                                        if (err) throw err;
+                                        fs.writeFileSync(fd, `<?php
 
 /**
-* Uncomment below line and load your header to inculde header.
+* It will load your header to inculde header.
 */
 
-//$this->load->view('layout/header');
+$this->load->view('${newFolder}layout/header');
 
 /**
 * This content will include loading view and its data.
@@ -51,21 +114,30 @@ echo $template_contents;
 
 
 /**
-* Uncomment below line and load your footer to inculde footer.
+* It will load your footer to inculde footer.
 */
-//$this->load->view('layout/footer');
+$this->load->view('${newFolder}layout/footer');
 
 /* End of file ${capitalize.lowercase(val)}.php and path ${viewPath.replace(pathdir,'')} */
 `);
-                            fs.close(fd);
+                                        fs.close(fd);
 
-                            fs.open(libraryPath, "w+", function (err, fd) {
-                                if (err) throw err;
-                                fs.writeFileSync(fd, `<?php defined('BASEPATH') OR exit('No direct script access allowed');
+                                        fs.open(libraryPath, "w+", function (err, fd) {
+                                            if (err) throw err;
+                                            fs.writeFileSync(fd, `<?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 class ${capitalize.capitalize(val)} {
         private $template_data = [];
         
+        /**
+        * You have to load this library, after loading library
+        * You can load this library in controller with by using
+        * $this->${capitalize.lowercase(val)}->load('VIEW_PAGE');
+        * Where VIEW_PAGE is the content of a page without header
+        * & footer.
+        */
+
+
         /**
          * This function will use to set template data.
          * 
@@ -88,7 +160,7 @@ class ${capitalize.capitalize(val)} {
          * @return void 
          */
     
-        function load($view = '' , $view_data = [], $template = '${capitalize.lowercase(val)}', $return = FALSE)
+        function load($view = '' , $view_data = [], $template = '${newFolder}${capitalize.lowercase(val)}', $return = FALSE)
         {               
             $this->CI =& get_instance();
             $this->_set('template_contents', $this->CI->load->view($view, $view_data, TRUE));            
@@ -98,18 +170,24 @@ class ${capitalize.capitalize(val)} {
 
 /* End of file ${capitalize.lowercase(val)}.php and path ${libraryPath.replace(pathdir,'')} */
 `);
-                                fs.close(fd);
-
-                                var libraryOpenPath = vscode.Uri.file(libraryPath); //A request file path
-                                vscode.workspace.openTextDocument(libraryOpenPath).then(function (val) {
-                                    vscode.window.showTextDocument(val);
-                                });
-                            });
-                        });
-                    }
-                });
-            }
+                                            fs.close(fd);
+                                            vs_window.showInformationMessage(`${libraryPath.replace(pathdir,'')} library created.`);
+                                            vscode.workspace.openTextDocument(vscode.Uri.file(viewLayoutHeaderPath)).then(function (val) {
+                                                vs_window.showTextDocument(val);
+                                            });
+                                        });
+                                    }); //View Closed
+                                }); //View Header Closed
+                            }); //View Footer Closed
+                        }
+                        creation = true;
+                        vs_window.showInformationMessage(`View files header & footer in layout folder created.`);
+                        vs_window.showInformationMessage('Template library and view created successfully!');
+                    });
+                }
+            });
+            if (!creation)
+                vs_window.showErrorMessage("Error occured, try again with valid folder name.");
         });
-        vscode.window.showInformationMessage('Template library and view created successfully!');
     });
 }

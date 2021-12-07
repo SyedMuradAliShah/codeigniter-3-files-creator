@@ -19,7 +19,13 @@ module.exports = function (vscode, fs, path, pathdir) {
                     vscode.window.showWarningMessage("Table file name already exists!");
                 } else {
                     if (!fs.existsSync(migrationDir)) {
-                        fs.mkdirSync(migrationDir);
+                        try {
+                            fs.mkdirSync(migrationDir, {
+                                recursive: true
+                            });
+                        } catch (err) {
+                            console.log(err);
+                        }
                         vscode.window.showInformationMessage("Migration folder created in applications.");
                     }
 
@@ -37,22 +43,27 @@ class Migration_${capitalize.capitalize(val)} extends CI_Migration
         $this->dbforge->add_field([
             'id' => [
                 'type'              => 'INT',
-                'constraint'        => 4,
+                'constraint'        => 11,
                 'unsigned'          => TRUE,
                 'auto_increment'    => TRUE
             ],
             'username' => [
                 'type'              => 'VARCHAR',
-                'constraint'        => '30',
+                'constraint'        => '30'
             ],
             'password' => [
                 'type'              => 'VARCHAR',
+                'constraint'        => '100'
+            ],
+            'ip' => [
+                'type'              => 'VARCHAR',
                 'constraint'        => '100',
+                'null'              => TRUE
             ],
             'status' => [
                 'type'              => 'ENUM',
                 'constraint'        => ['active', 'suspend'],
-                'default'           => 'active',
+                'default'           => 'active'
             ]
         ]);
         $this->dbforge->add_key('id', TRUE);
@@ -71,6 +82,22 @@ class Migration_${capitalize.capitalize(val)} extends CI_Migration
         //     'phone'      => '123-123-7834',
         //     'password'   => password_hash('123456', PASSWORD_BCRYPT),
         // ]);
+        
+        //Inserting two rows
+        // $data = [
+        //      [
+        //          'username'   => 'murad_ali',
+        //          'phone'      => '123-123-7834',
+        //          'password'   => password_hash('123456', PASSWORD_BCRYPT),
+        //      ],
+        //      [
+        //          'username'   => 'murad_ali',
+        //          'phone'      => '123-123-7834',
+        //          'password'   => password_hash('123456', PASSWORD_BCRYPT),
+        //      ]
+        // ];
+
+        // $this->db->insert_batch($this->tableName, $data);
     }
 
     public function down()

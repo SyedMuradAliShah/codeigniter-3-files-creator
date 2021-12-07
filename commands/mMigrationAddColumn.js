@@ -24,7 +24,13 @@ module.exports = function (vscode, fs, path, pathdir) {
                     vscode.window.showWarningMessage("Migration file name already exists!");
                 } else {
                     if (!fs.existsSync(migrationDir)) {
-                        fs.mkdirSync(migrationDir);
+                        try {
+                            fs.mkdirSync(migrationDir, {
+                                recursive: true
+                            });
+                        } catch (err) {
+                            console.log(err);
+                        }
                         vscode.window.showInformationMessage("Migration folder created in applications.");
                     }
 

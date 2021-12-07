@@ -40,12 +40,17 @@ Asked for file name?
 And that's all.
 
 ### How to use Template
-1. Load template library `application\config\autoload.php` here.
-2. Now in controller you have to call 
+1. Press `F1` and then `CI3 make:template` now choose your folder to if you want to make otherwise leave it empty, you can also use folder within folder, like `admin/dashboard` or `user/template/front_end` or `user/template/backend_end` etc.
+2. Load template library `application\config\autoload.php` here.
+3. Now in controller you have to call 
 - `$this->TEMPLATE_FILE_NAME->load('VIEW_FILE_NAME', $data);`
 
-in my case let me show.
+For example if I set TEMPLATE_FILE_NAME as template and I have a view file name page.php
+- `$this->template->load('page');`
 - `$this->template->load('page', $data);`
+
+Or you can use sub folder like this.
+- `$this->template->load('folder_name/page', $data);`
 
 And that's all.
 
@@ -102,8 +107,8 @@ Press `F1` then type bellow commands
 > This repository is public, your contribution will be appricated.
 
 
-**Please Donate To Support Me, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
+**You can support me by donating, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
 
-[![Donate](https://i.imgur.com/W6ggNR5.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+[![Donate](https://i.imgur.com/W6ggNR5.png)](://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
 
-[![Donate](https://i.imgur.com/2v7VgCu.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+[![Donate](https://i.imgur.com/2v7VgCu.png)](://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)

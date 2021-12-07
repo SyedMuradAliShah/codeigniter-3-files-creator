@@ -102,8 +102,8 @@ Press `F1` then type bellow commands
 > This repository is public, your contribution will be appricated.
 
 
-**Please Donate To Support Me, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
+**You can support me by donating, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
 
-[![Donate](https://i.imgur.com/W6ggNR5.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+[![Donate](https://i.imgur.com/W6ggNR5.png)](://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
 
-[![Donate](https://i.imgur.com/2v7VgCu.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+[![Donate](https://i.imgur.com/2v7VgCu.png)](://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)

@@ -1,6 +1,10 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.4] - 2021-12-07
+- Functionality improved
+- Template now accept folders
+  
 ## [0.1.3] - 2021-12-02
 - Functionality & helping text improved
 - Bug in fixed

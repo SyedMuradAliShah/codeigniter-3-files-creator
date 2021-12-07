@@ -15,20 +15,25 @@ module.exports = function (vscode, fs, path, pathdir) {
             if (val.length == 0) {
                 vscode.window.showErrorMessage("Model file name required.");
             } else {
-                var modelDir = pathdir + "/application/models/" + folderName;
-                var pathfile = path.join(modelDir, capitalize.capitalize(val)) + "_model.php";
+                var modelDir = `${pathdir}/application/models/${folderName}`;
+                var pathfile = `${path.join(modelDir, capitalize.capitalize(val))}_model.php`;
                 fs.access(pathfile, function (err) {
                     if (!err) {
-                        vscode.window.showWarningMessage("Model file name already exists  !");
+                        vscode.window.showWarningMessage("Model file name already exists!");
                     } else {
                         if (!fs.existsSync(modelDir)) {
-                            fs.mkdirSync(modelDir);
-                            vscode.window.showInformationMessage(folderName + " folder created in models.");
+                            try {
+                                fs.mkdirSync(modelDir, {
+                                    recursive: true
+                                });
+                            } catch (err) {
+                                console.log(err);
+                            }
+                            vscode.window.showInformationMessage(`${folderName} folder created in models.`);
                         }
                         fs.open(pathfile, "w+", function (err, fd) {
                             if (err) throw err;
                             fs.writeFileSync(fd, `<?php 
-
 defined('BASEPATH') OR exit('No direct script access allowed');
                         
 class ${capitalize.capitalize(val)}_model extends CI_Model 
