@@ -39,7 +39,6 @@ module.exports = function (vscode, fs, path, pathdir) {
                                 } catch (err) {
                                     console.log(err);
                                 }
-                                fs.mkdirSync(modelDir);
                                 vscode.window.showInformationMessage(folderName + " folder created in models.");
                             }
                             if (!fs.existsSync(controllerDir)) {
