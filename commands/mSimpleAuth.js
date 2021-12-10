@@ -128,7 +128,7 @@ class ${capitalize.capitalize(val)} extends CI_Controller
     }
 
     /*
-    This is simple authenticatio.
+    This is simple authentication.
     */
 
     public function login()
@@ -226,8 +226,15 @@ class ${capitalize.capitalize(val)} extends CI_Controller
 
                                     var controllerOpenPath = vscode.Uri.file(controllerPath); //A request file path
                                     vscode.workspace.openTextDocument(controllerOpenPath).then(function (val) {
-                                        vscode.window.showTextDocument(val);
+                                        vscode.window.showTextDocument(val, {
+                                            preview: false
+                                        });
                                     });
+                                });
+
+                                var modelOpenPath = vscode.Uri.file(modelPath); //A request file path
+                                vscode.workspace.openTextDocument(modelOpenPath).then(function (val) {
+                                    vscode.window.showTextDocument(val);
                                 });
 
                             });

@@ -171,8 +171,26 @@ class ${capitalize.capitalize(val)} {
 `);
                                             fs.close(fd);
                                             vs_window.showInformationMessage(`${libraryPath.replace(pathdir,'')} library created.`);
+
+                                            vscode.workspace.openTextDocument(vscode.Uri.file(libraryPath)).then(function (val) {
+                                                vs_window.showTextDocument(val, {
+                                                    preview: false
+                                                });
+                                            });
+                                            vscode.workspace.openTextDocument(vscode.Uri.file(viewPath)).then(function (val) {
+                                                vs_window.showTextDocument(val, {
+                                                    preview: false
+                                                });
+                                            });
+                                            vscode.workspace.openTextDocument(vscode.Uri.file(viewLayoutFooterPath)).then(function (val) {
+                                                vs_window.showTextDocument(val, {
+                                                    preview: false
+                                                });
+                                            });
                                             vscode.workspace.openTextDocument(vscode.Uri.file(viewLayoutHeaderPath)).then(function (val) {
-                                                vs_window.showTextDocument(val);
+                                                vs_window.showTextDocument(val, {
+                                                    preview: false
+                                                });
                                             });
                                         });
                                     }); //View Closed

@@ -9,25 +9,37 @@ module.exports = function (vscode, fs, path, pathdir) {
             vscode.window.showErrorMessage("Library file name required.");
 
         } else {
-            var pathfile = path.join(pathdir + "/application/libraries", capitalize.capitalize(val)) + ".php";
+            var mainDir = `${pathdir}/application/libraries/`;
+            var pathfile = path.join(mainDir, `${capitalize.capitalize(val)}.php`);
             fs.access(pathfile, function (err) {
                 if (!err) {
-                    vscode.window.showWarningMessage("Library file name already exists  !");
+                    vscode.window.showWarningMessage("Library file name already exists!");
                 } else {
+                    if (!fs.existsSync(mainDir)) {
+                        try {
+                            fs.mkdirSync(mainDir, {
+                                recursive: true
+                            });
+                        } catch (err) {
+                            console.log(err);
+                        }
+                        vscode.window.showInformationMessage(`${folderName} folder created in libraries.`);
+                    }
+
                     fs.open(pathfile, "w+", function (err, fd) {
                         if (err) throw err;
                         fs.writeFileSync(fd, `<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
-                        
+
 class ${capitalize.capitalize(val)}
 {
-                      
     public function __construct()
     {
-                                    
+        $this->CI = &get_instance();
     }
 
 }
+
 
 /* End of file ${capitalize.capitalize(val)}.php and path ${pathfile.replace(pathdir,'')} */
 `);
@@ -37,7 +49,7 @@ class ${capitalize.capitalize(val)}
                             vscode.window.showTextDocument(val);
                         });
                     });
-                    vscode.window.showInformationMessage('Library created successfully! ');
+                    vscode.window.showInformationMessage('Library created successfully!');
                 }
             });
         }

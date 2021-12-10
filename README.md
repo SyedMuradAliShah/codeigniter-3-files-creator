@@ -13,6 +13,7 @@
 Creating files never been so easy, CI3 Files Creator bring you comands to create necessary with a few step.
 
 **Features**
+- Create hook
 - Create template
 - Create migration add table
 - Create migration rename table
@@ -85,7 +86,8 @@ Press `F1` then type bellow commands
 
 | Command                            |                                                Function |
 | :--------------------------------- | ------------------------------------------------------: |
-| `CI3 make:template`                |                It will create template in library file. |
+| `CI3 make:hook`                    |                    It will create hook in hooks folder. |
+| `CI3 make:template`                |              It will create template in library folder. |
 | `CI3 make:migration:add_table`     |      It will create migration file in migration folder. |
 | `CI3 make:migration:rename_table`  |      It will create migration file in migration folder. |
 | `CI3 make:migration:add_column`    |   It will create migration for adding column to a table |

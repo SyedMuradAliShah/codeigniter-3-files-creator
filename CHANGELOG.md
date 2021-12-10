@@ -1,6 +1,12 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.8] - 2021-12-12
+- Hook added
+- Some important functions added to helper function
+- Default constructor added to library
+- Open all files after creation.
+
 ## [0.1.7] - 2021-12-07
 - Critical error fixed in crud
 - Language fixed
