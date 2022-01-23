@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.1.9] - 2022-01-23
+- Issue reported fixed #2
+
 ## [0.1.8] - 2021-12-12
 - Hook added
 - Some important functions added to helper function
