@@ -1,8 +1,11 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.0] - 2022-02-02
+- Issue reported fixed [#4](https://github.com/SyedMuradAliShah/codeigniter-3-files-creator/issues/4)
+
 ## [0.1.9] - 2022-01-23
-- Issue reported fixed #2
+- Issue reported fixed [#2](https://github.com/SyedMuradAliShah/codeigniter-3-files-creator/issues/2)
 
 ## [0.1.8] - 2021-12-12
 - Hook added
