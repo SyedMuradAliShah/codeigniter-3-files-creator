@@ -16,7 +16,7 @@ module.exports = function (vscode, fs, path, pathdir) {
             var FileTimeStamp = date.getFullYear() + ("0" + (date.getMonth() + 1)).slice(-2) + ("0" + date.getDate()).slice(-2) + ("0" + date.getHours()).slice(-2) + ("0" + date.getMinutes()).slice(-2) + ("0" + date.getSeconds()).slice(-2);
 
             var migrationDir = `${pathdir}/application/migrations`;
-            var migrationFile = FileTimeStamp + '_' + val;
+            var migrationFile = FileTimeStamp + '_' + val + '_table';
             var pathfile = `${path.join(migrationDir, migrationFile)}.php`;
 
             fs.access(pathfile, function (err) {
@@ -51,8 +51,8 @@ class Migration_${capitalize.capitalize(val)}_table extends CI_Migration
     public function up()
     {
         $fields = [
-                '${new_column_name}' => [
-                    'name'          => ${old_column_name}
+                '${old_column_name}' => [
+                    'name'          => '${new_column_name}',
                     'type'          => 'VARCHAR',
                 //  'constraint'    => '30',
                 //  'default'       => 'murad ali',
@@ -65,8 +65,8 @@ class Migration_${capitalize.capitalize(val)}_table extends CI_Migration
     public function down()
     {
         $fields = [
-                '${old_column_name}' => [
-                    'name'          => ${new_column_name}
+                '${new_column_name}' => [
+                    'name'          => '${old_column_name}',
                     'type'          => 'VARCHAR',
                 //  'constraint'    => '30',
                 //  'default'       => 'murad ali',
