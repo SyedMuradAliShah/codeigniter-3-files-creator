@@ -102,7 +102,7 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
     {
       $this->db->where("id", $id);
       $query = $this->db->get($this->${capitalize.lowercase(val)});
-      return ($query->num_rows()) ? $query->result() : false;
+      return ($query->num_rows()) ? $query->row() : false;
     }
   
     /**
@@ -204,8 +204,8 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
      * This is the default function, it will return all rows
      * Pagingation is set here, you need to add route.
      * 
-     * $route["dashboard/${capitalize.lowercase(val)}"]['GET'] = "folder/dashboard/${capitalize.lowercase(val)}";
-     * $route["dashboard/${capitalize.lowercase(val)}/(:num)"]['GET'] = "folder/dashboard/${capitalize.lowercase(val)}";
+     * $route["${folderName}/${capitalize.lowercase(val)}"]['GET'] = "${folderName}/${capitalize.lowercase(val)}";
+     * $route["${folderName}/${capitalize.lowercase(val)}/(:num)"]['GET'] = "${folderName}/${capitalize.lowercase(val)}";
      * 
      * @return void  */
     public function index()

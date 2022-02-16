@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.2] - 2022-02-16
+- CURD minor bugs fixed  
+
 ## [0.2.1] - 2022-02-16
 - Google Authenticator Library Added
 - CURD fully-written and functional
