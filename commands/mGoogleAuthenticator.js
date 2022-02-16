@@ -54,15 +54,15 @@ class ${capitalize.capitalize(val)}
      *    cross-check before activating it for a customer.
      *    Once user enter 6 digits code from authy.
      *    Pass userGivenCode to verifyCode.
-     *      $checkResult = $this->${capitalize.lowercase(val)}->verifyCode($secretCode, $userGivenCode, 2); // 2 = 2*30sec clock tolerance
+     *      $checkResult = $this->${capitalize.lowercase(val)}->verifyCode($secretCode, $userGivenCode);
      * 
      *  [For Admin] in case you need see 30sec code, for a user you
      *              can simple get it using, secretCode saved in DB..
      *                  $oneTimeCode = $this->${capitalize.lowercase(val)}->getCode($secretCode);
      *   
      * 4. Now generate QR Link using one of below.
-     *      $qrCodeUrl = $this->${capitalize.lowercase(val)}->getQRCodeGoogleUrl('::(^_^)::', $secretCode); // It will return Google QR URL
-     *      $qrCodeUrl = $this->${capitalize.lowercase(val)}->getQRCodeQrServer('::(^_^)::', $secretCode); // It will return QR Server QR URL
+     *      $qrCodeUrl = $this->${capitalize.lowercase(val)}->getQRCodeGoogleUrl('YourSiteName: user@example.com', $secretCode); // It will return Google QR URL
+     *      $qrCodeUrl = $this->${capitalize.lowercase(val)}->getQRCodeQrServer('YourSiteName: user@example.com', $secretCode); // It will return QR Server QR URL
      * 
      * 5. This is not important but if you want your user your
      *    URL instead of QR link, generated in step 4.
@@ -220,33 +220,19 @@ class ${capitalize.capitalize(val)}
     }
 
     /**
-     * Check if the code is correct. This will accept codes starting from $discrepancy*30sec ago to $discrepancy*30sec from now.
+     * Check if the code is correct.
      *
      * @param string   $secret
      * @param string   $code
-     * @param int      $discrepancy      This is the allowed time drift in 30 second units (8 means 4 minutes before or after)
-     * @param int|null $currentTimeSlice time slice if we want use other that time()
      *
      * @return bool
      */
-    public function verifyCode($secret, $code, $discrepancy = 1, $currentTimeSlice = null)
+    public function verifyCode($secret, $code)
     {
-        if ($currentTimeSlice === null) {
-            $currentTimeSlice = floor(time() / 30);
-        }
-
         if (strlen($code) != 6) {
             return false;
         }
-
-        for ($i = -$discrepancy; $i <= $discrepancy; ++$i) {
-            $calculatedCode = $this->getCode($secret, $currentTimeSlice + $i);
-            if ($this->timingSafeEquals($calculatedCode, $code)) {
-                return true;
-            }
-        }
-
-        return false;
+        return ($this->getCode($secret) == $code) ? true : false;
     }
 
     /**

@@ -70,18 +70,20 @@ And that's all.
     - `$secretCode = $this->authy->createSecret()`;
  
 3. Once secretCode added to Authy, then you have to cross-check before\
-   activating it for a customer. Once user enter 6 digits code from authy. Pass userGivenCode to verifyCode.
-    - `$checkResult = $this->authy->verifyCode($secretCode, $userGivenCode, 2); // 2 = 2*30sec clock tolerance`
+   activating it for a customer. Once user enter 6 digits code from authy.\
+   Pass userGivenCode to verifyCode. You will also use this when user want to\
+   login with an activated, OTP account.
+    - `$checkResult = $this->authy->verifyCode($secretCode, $userGivenCode);`
  
   **[For Admin]** in case you need see 30sec code, for a user you can simple get it\
     using, secretCode saved in DB..
    - `$oneTimeCode = $this->authy->getCode($secretCode);`
    
 4. Now generate QR Link using one of below.\
-    - `$qrCodeUrl = $this->authy->getQRCodeGoogleUrl('::(^_^)::', $secretCode); // It will return Google QR URL`\
-    - `$qrCodeUrl = $this->authy->getQRCodeQrServer('::(^_^)::', $secretCode); // It will return QR Server QR URL`
+    - `$qrCodeUrl = $this->authy->getQRCodeGoogleUrl('YourSiteName: user@example.com', $secretCode); // It will return Google QR URL`\
+    - `$qrCodeUrl = $this->authy->getQRCodeQrServer('YourSiteName: user@example.com', $secretCode); // It will return QR Server QR URL`
  
-4. This is not important but if you want your user your
+5. This is not important but if you want your user your
     URL instead of QR link, generated in step 4.\
     Call this in separate function, because header set\
     to image only.\

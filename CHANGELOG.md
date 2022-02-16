@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.3] - 2022-02-16
+- Critical error fixed in Google Authenticator Library
+
 ## [0.2.2] - 2022-02-16
 - CURD minor bugs fixed  
 
