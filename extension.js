@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require("path");
 
+const mGoogleAuthenticator = require("./commands/mGoogleAuthenticator");
 const mHook = require("./commands/mHook");
 const mTemplate = require("./commands/mTemplate");
 const mMigrationAddTable = require("./commands/mMigrationAddTable");
@@ -34,7 +35,10 @@ function activate(context) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
-
+	
+	let library_google_authenticator = vscode.commands.registerCommand('make.ci3_library_google_authenticator', function () {
+		mGoogleAuthenticator(vscode, fs, path, pathwork);
+	});
 	let hook = vscode.commands.registerCommand('make.ci3_hook', function () {
 		mHook(vscode, fs, path, pathwork);
 	});
@@ -87,6 +91,7 @@ function activate(context) {
 	});
 
 	
+	context.subscriptions.push(library_google_authenticator);
 	context.subscriptions.push(hook);
 	context.subscriptions.push(template);
 	context.subscriptions.push(migration_add_table);
