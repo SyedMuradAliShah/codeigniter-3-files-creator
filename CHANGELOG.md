@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.5] - 2022-06-11
+- .htaccess rules updated
+
 ## [0.2.4] - 2022-03-07
 - Some security added .htaccess
 

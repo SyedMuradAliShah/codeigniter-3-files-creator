@@ -14,28 +14,36 @@ module.exports = function (vscode, fs, path, pathdir) {
     IndexIgnore *
     Options -Indexes
     <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|css|js)$">
-      Header set Access-Control-Allow-Origin "*"
+        Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
     
-    <FilesMatch "\.(htaccess)$">
-      order deny,allow
-      deny from all
-      allow from 127.0.0.1
-    </FilesMatch>
+    #<FilesMatch "\.(htaccess)$">
+    #   order deny,allow
+    #   deny from all
+    #   allow from 127.0.0.1
+    #</FilesMatch>
     
-    <FilesMatch "\.(htpasswd|ini|phps|fla|psd|log|sh|docx|json|sql|rst)$">
-      order deny,allow
-      deny from all
-      allow from 127.0.0.1
-    </FilesMatch>
+    #<FilesMatch "\.(htpasswd|ini|phps|fla|psd|log|sh|docx|json|sql|rst)$">
+    #    deny,allow
+    #    deny from all
+    #    allow from 127.0.0.1
+    #</FilesMatch>
 </IfModule>
 
 <IfModule mod_rewrite.c>
-    RewriteEngine On 
+    RewriteEngine on
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^(.*)$ index.php/$1 [L,QSA]
-</IfModule>`);
+    RewriteRule ^(.*)$ index.php/$1 [QSA, L]
+
+    #RewriteCond %{HTTPS} !on
+    #RewriteCond %{HTTP_HOST} !^www\.
+    #RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+    #RewriteCond %{HTTP_HOST} !^www\.
+    #RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+</IfModule>
+`);
                 fs.close(fd);
             });
             var openPath = vscode.Uri.file(pathfile); //A request file path

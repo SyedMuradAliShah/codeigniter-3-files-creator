@@ -3,7 +3,7 @@
     "displayName": "Codeigniter 3 Files Creator",
     "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create auth, crud, model, controller, migration etc with a few clicks.",
     "icon": "assets/icon.png",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "publisher": "SyedMuradAliShah",
     "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
     "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
@@ -38,13 +38,16 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
+        "commands": [
+            {
                 "command": "make.ci3_library_google_authenticator",
                 "title": " CI3 make:library_google_authenticator"
-            }, {
+            },
+            {
                 "command": "make.ci3_hook",
                 "title": " CI3 make:hook"
-            }, {
+            },
+            {
                 "command": "make.ci3_template",
                 "title": " CI3 make:template"
             },
@@ -107,10 +110,13 @@
         "test": "node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
-        "typescript": "^2.6.1",
-        "vscode": "^1.1.6",
-        "eslint": "^4.11.0",
+        "@types/mocha": "^2.2.42",
         "@types/node": "^7.0.43",
-        "@types/mocha": "^2.2.42"
+        "eslint": "^8.17.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "vsce": "^2.9.1"
     }
 }
