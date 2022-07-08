@@ -12,16 +12,17 @@
 Creating files never been so easy, CI3 Files Creator bring you comands to create necessary with a few step.
 
 **Features**
+- Create view file ✨NEW✨
 - Create library google authentication / authy ✨NEW✨
 - Create hook
-- Create template
+- Create template 🎯Updated🎯
 - Create migration add table
 - Create migration rename table
 - Create migration add column to table
 - Create migration rename column in table
 - Create simple_auth
 - Create simple_auth_api
-- Create crud (include Model & Controller)
+- Create crud (include Model & Controller) 🎯Updated🎯
 - Create model file
 - Create controller file
 - Create library file
@@ -55,8 +56,9 @@ For example if I set TEMPLATE_FILE_NAME as template and I have a view file name 
 Or you can use sub folder like this. 
 - `$this->template->load('folder_name/page', $data);`
 
-> NOTE: if you used a folder for template like `user_side` then your view files must be inside\
-> the user_side directory!
+> NOTE: if you use a folder for template like `user_side` then your view files must be inside\
+> the `user_side\pages` directory!\
+> `pages` is a folder where you will add futher files. 
 
 And that's all.
 
@@ -134,6 +136,7 @@ Press `F1` then type bellow commands
 |                                         |           and registration and will return json format. |
 | `CI3 make:crud`                         |   It will create controller, model with crud functions. |
 | `CI3 make:model`                        |                              It will create model file. |
+| `CI3 make:view`                         |                         It will create view file.       |
 | `CI3 make:controller`                   |                         It will create controller file. |
 | `CI3 make:library`                      |          It will create library file in library folder. |
 | `CI3 make:language`                     |        It will create language file in language folder. |

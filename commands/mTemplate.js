@@ -61,6 +61,13 @@ module.exports = function (vscode, fs, path, pathdir) {
                                 }
                                 vs_window.showInformationMessage(`layout folder created in ${folderName} folder in views.`);
                             }
+                            
+                            if (!fs.existsSync(path.join(viewDir, 'pages'))) {
+                                fs.mkdirSync(path.join(viewDir, 'pages'), {
+                                    recursive: true
+                                });
+                            }
+
                             if (!fs.existsSync(libraryDir)) {
                                 try {
                                     fs.mkdirSync(libraryDir, {
@@ -80,7 +87,7 @@ module.exports = function (vscode, fs, path, pathdir) {
 </head>
 <body>
 
-<?php /* End of file header.php and path ${viewLayoutHeaderPath.replace(pathdir,'')} */ ?>
+<?php /* End of file header.php and path ${viewLayoutHeaderPath.replace(pathdir, '')} */ ?>
 `);
                                 fs.close(fd);
 
@@ -92,7 +99,7 @@ module.exports = function (vscode, fs, path, pathdir) {
     </body>
 </html>
                                     
-<?php /* End of file footer.php and path ${viewLayoutFooterPath.replace(pathdir,'')} */ ?>
+<?php /* End of file footer.php and path ${viewLayoutFooterPath.replace(pathdir, '')} */ ?>
     `);
                                     fs.close(fd);
 
@@ -117,7 +124,7 @@ echo $template_contents;
 */
 $this->load->view('${newFolder}layout/footer');
 
-/* End of file ${capitalize.lowercase(val)}.php and path ${viewPath.replace(pathdir,'')} */
+/* End of file ${capitalize.lowercase(val)}.php and path ${viewPath.replace(pathdir, '')} */
 `);
                                         fs.close(fd);
 
@@ -162,15 +169,15 @@ class ${capitalize.capitalize(val)} {
         function load($view = '' , $view_data = [], $template = '${newFolder}${capitalize.lowercase(val)}', $return = FALSE)
         {               
             $this->CI =& get_instance();
-            $this->_set('template_contents', $this->CI->load->view("${newFolder}{$view}", $view_data, TRUE));            
+            $this->_set('template_contents', $this->CI->load->view("${newFolder}/pages/{$view}", $view_data, TRUE));            
             return $this->CI->load->view($template, $this->template_data, $return);
         }
 }
 
-/* End of file ${capitalize.lowercase(val)}.php and path ${libraryPath.replace(pathdir,'')} */
+/* End of file ${capitalize.lowercase(val)}.php and path ${libraryPath.replace(pathdir, '')} */
 `);
                                             fs.close(fd);
-                                            vs_window.showInformationMessage(`${libraryPath.replace(pathdir,'')} library created.`);
+                                            vs_window.showInformationMessage(`${libraryPath.replace(pathdir, '')} library created.`);
 
                                             vscode.workspace.openTextDocument(vscode.Uri.file(libraryPath)).then(function (val) {
                                                 vs_window.showTextDocument(val, {

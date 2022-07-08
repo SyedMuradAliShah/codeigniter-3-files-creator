@@ -9,14 +9,16 @@ module.exports = function (vscode, fs, path, pathdir) {
             vscode.window.showInformationMessage("Controllers & models main folder selected.");
         }
 
+
         vscode.window.showInputBox({
-            prompt: "name of controller/model",
+            prompt: "Enter name of controller/model",
             placeHolder: "Enter controller & model name"
         }).then(function (val) {
             if (val.length == 0) {
                 vscode.window.showErrorMessage("Controller & model file name required.");
                 return;
             }
+
             var controllerDir = `${pathdir}/application/controllers/${folderName}`;
             var modelDir = `${pathdir}/application/models/${folderName}`;
 
@@ -51,9 +53,85 @@ module.exports = function (vscode, fs, path, pathdir) {
                                 }
                                 vscode.window.showInformationMessage(folderName + " folder created in controllers.");
                             }
-                            fs.open(modelPath, "w+", function (err, fd) {
-                                if (err) throw err;
-                                fs.writeFileSync(fd, `<?php 
+
+                            vscode.window.showInputBox({
+                                prompt: "Want blank files only?",
+                                placeHolder: "Want blank files only? submit 1, otherwise leave empty!"
+                            }).then(function (empty_curd) {
+                                if (empty_curd.length != 0) {
+
+                                    fs.open(modelPath, "w+", function (err, fd) {
+                                        if (err) throw err;
+                                        fs.writeFileSync(fd, `<?php 
+                
+defined('BASEPATH') OR exit('No direct script access allowed');
+                        
+class ` + capitalize.capitalize(val) + `_model extends CI_Model 
+{
+
+    protected $${capitalize.lowercase(val)} = '${capitalize.lowercase(val)}';
+
+    public function __construct()
+    {
+        parent::__construct();
+    }
+ 
+    public function select(){
+
+    }
+}
+
+/* End of file ${capitalize.capitalize(val)}_model.php and path ${modelPath.replace(pathdir, '')} */
+                    
+`);
+                                        fs.close(fd);
+                                        fs.open(controllerPath, "w+", function (err, fd) {
+                                            if (err) throw err;
+                                            if (folderName.length != 0)
+                                                var loadModelNamePath = `${folderName}/${capitalize.lowercase(val)}_model`;
+                                            else
+                                                var loadModelNamePath = `${capitalize.lowercase(val)}_model`;
+
+                                            fs.writeFileSync(fd, `<?php 
+defined('BASEPATH') OR exit('No direct script access allowed');
+        
+class ` + capitalize.capitalize(val) + ` extends CI_Controller
+{
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('${loadModelNamePath}', '${val}');
+    }
+ 
+    public function index(){
+
+    }
+
+}
+
+
+/* End of file ${capitalize.capitalize(val)}.php and path ${controllerPath.replace(pathdir, '')} */
+`);
+                                            fs.close(fd);
+                                            var controllerOpenPath = vscode.Uri.file(controllerPath); //A request file path
+                                            vscode.workspace.openTextDocument(controllerOpenPath).then(function (val) {
+                                                vscode.window.showTextDocument(val, {
+                                                    preview: false
+                                                });
+                                            });
+                                        });
+
+                                        var modelOpenPath = vscode.Uri.file(modelPath); //A request file path
+                                        vscode.workspace.openTextDocument(modelOpenPath).then(function (val) {
+                                            vscode.window.showTextDocument(val);
+                                        });
+                                    });
+                                } else {
+
+
+                                    fs.open(modelPath, "w+", function (err, fd) {
+                                        if (err) throw err;
+                                        fs.writeFileSync(fd, `<?php 
                 
 defined('BASEPATH') OR exit('No direct script access allowed');
                         
@@ -175,15 +253,15 @@ class ` + capitalize.capitalize(val) + `_model extends CI_Model
 /* End of file ${capitalize.capitalize(val)}_model.php and path ${modelPath.replace(pathdir, '')} */
                     
 `);
-                                fs.close(fd);
-                                fs.open(controllerPath, "w+", function (err, fd) {
-                                    if (err) throw err;
-                                    if (folderName.length != 0)
-                                        var loadModelNamePath = `${folderName}/${capitalize.lowercase(val)}_model`;
-                                    else
-                                        var loadModelNamePath = `${capitalize.lowercase(val)}_model`;
+                                        fs.close(fd);
+                                        fs.open(controllerPath, "w+", function (err, fd) {
+                                            if (err) throw err;
+                                            if (folderName.length != 0)
+                                                var loadModelNamePath = `${folderName}/${capitalize.lowercase(val)}_model`;
+                                            else
+                                                var loadModelNamePath = `${capitalize.lowercase(val)}_model`;
 
-                                    fs.writeFileSync(fd, `<?php 
+                                            fs.writeFileSync(fd, `<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
         
 class ` + capitalize.capitalize(val) + ` extends CI_Controller
@@ -422,19 +500,22 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
 
 /* End of file ${capitalize.capitalize(val)}.php and path ${controllerPath.replace(pathdir, '')} */
 `);
-                                    fs.close(fd);
-                                    var controllerOpenPath = vscode.Uri.file(controllerPath); //A request file path
-                                    vscode.workspace.openTextDocument(controllerOpenPath).then(function (val) {
-                                        vscode.window.showTextDocument(val, {
-                                            preview: false
+                                            fs.close(fd);
+                                            var controllerOpenPath = vscode.Uri.file(controllerPath); //A request file path
+                                            vscode.workspace.openTextDocument(controllerOpenPath).then(function (val) {
+                                                vscode.window.showTextDocument(val, {
+                                                    preview: false
+                                                });
+                                            });
+                                        });
+
+                                        var modelOpenPath = vscode.Uri.file(modelPath); //A request file path
+                                        vscode.workspace.openTextDocument(modelOpenPath).then(function (val) {
+                                            vscode.window.showTextDocument(val);
                                         });
                                     });
-                                });
 
-                                var modelOpenPath = vscode.Uri.file(modelPath); //A request file path
-                                vscode.workspace.openTextDocument(modelOpenPath).then(function (val) {
-                                    vscode.window.showTextDocument(val);
-                                });
+                                }
                             });
                         }
                     });

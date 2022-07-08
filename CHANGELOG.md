@@ -1,6 +1,11 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.7] - 2022-07-08
+- Creating view file is added
+- Template will now point to folder pages
+- In crud when you choose blank, it will create blank model & controller
+
 ## [0.2.6] - 2022-06-15
 - Critical bug in .htaccess fixed
 
