@@ -25,41 +25,41 @@ module.exports = function (vscode, fs, path, pathdir) {
             var controllerPath = `${path.join(controllerDir, capitalize.capitalize(val))}.php`;
             var modelPath = `${path.join(modelDir, capitalize.capitalize(val))}_model.php`;
 
-            fs.access(controllerPath, function (controllerExists) {
-                if (!controllerExists) {
-                    vscode.window.showWarningMessage("Controller file name already exists!");
-                } else {
-                    fs.access(modelPath, function (modelExists) {
-                        if (!modelExists) {
-                            vscode.window.showWarningMessage("Model file name already exists!");
-                        } else {
-                            if (!fs.existsSync(modelDir)) {
-                                try {
-                                    fs.mkdirSync(modelDir, {
-                                        recursive: true
-                                    });
-                                } catch (err) {
-                                    console.log(err);
-                                }
-                                vscode.window.showInformationMessage(folderName + " folder created in models.");
-                            }
-                            if (!fs.existsSync(controllerDir)) {
-                                try {
-                                    fs.mkdirSync(controllerDir, {
-                                        recursive: true
-                                    });
-                                } catch (err) {
-                                    console.log(err);
-                                }
-                                vscode.window.showInformationMessage(folderName + " folder created in controllers.");
-                            }
 
-                            vscode.window.showInputBox({
-                                prompt: "Want blank files only?",
-                                placeHolder: "Want blank files only? submit 1, otherwise leave empty!"
-                            }).then(function (empty_curd) {
+            vscode.window.showInputBox({
+                prompt: "Want blank files only?",
+                placeHolder: "Want blank files only? submit 1, otherwise leave empty!"
+            }).then(function (empty_curd) {
+                fs.access(controllerPath, function (controllerExists) {
+                    if (!controllerExists) {
+                        vscode.window.showWarningMessage("Controller file name already exists!");
+                    } else {
+                        fs.access(modelPath, function (modelExists) {
+                            if (!modelExists) {
+                                vscode.window.showWarningMessage("Model file name already exists!");
+                            } else {
+                                if (!fs.existsSync(modelDir)) {
+                                    try {
+                                        fs.mkdirSync(modelDir, {
+                                            recursive: true
+                                        });
+                                    } catch (err) {
+                                        console.log(err);
+                                    }
+                                    vscode.window.showInformationMessage(folderName + " folder created in models.");
+                                }
+                                if (!fs.existsSync(controllerDir)) {
+                                    try {
+                                        fs.mkdirSync(controllerDir, {
+                                            recursive: true
+                                        });
+                                    } catch (err) {
+                                        console.log(err);
+                                    }
+                                    vscode.window.showInformationMessage(folderName + " folder created in controllers.");
+                                }
+
                                 if (empty_curd.length != 0) {
-
                                     fs.open(modelPath, "w+", function (err, fd) {
                                         if (err) throw err;
                                         fs.writeFileSync(fd, `<?php 
@@ -516,10 +516,10 @@ class ` + capitalize.capitalize(val) + ` extends CI_Controller
                                     });
 
                                 }
-                            });
-                        }
-                    });
-                }
+                            }
+                        });
+                    }
+                });
             });
             vscode.window.showInformationMessage('Controller & Model created successfully!');
         });

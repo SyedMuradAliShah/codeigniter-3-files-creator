@@ -1,6 +1,9 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.8] - 2022-07-13
+- Bug in blank CRUD fixed.
+
 ## [0.2.7] - 2022-07-08
 - Creating view file is added
 - Template will now point to folder pages
