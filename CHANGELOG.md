@@ -1,32 +1,37 @@
 # Change Log
 All changes will be updated here.
 
+## [0.2.9] - 2022-07-13
+- `.htaccess` improved
+- `.htaccess` added https and www and non-www version added
+- `.htaccess` if https on, localhost will not use it.
+
 ## [0.2.8] - 2022-07-13
-- Bug in blank CRUD fixed.
+- Bug in blank `CRUD` fixed.
 
 ## [0.2.7] - 2022-07-08
 - Creating view file is added
-- Template will now point to folder pages
-- In crud when you choose blank, it will create blank model & controller
+- `Template` will now point to folder pages
+- In `CRUD` when you choose blank, it will create blank model & controller
 
 ## [0.2.6] - 2022-06-15
-- Critical bug in .htaccess fixed
+- Critical bug in `.htaccess` fixed
 
 ## [0.2.5] - 2022-06-11
-- .htaccess rules updated
+- `.htaccess` rules updated
 
 ## [0.2.4] - 2022-03-07
-- Some security added .htaccess
+- Some security added `.htaccess`
 
 ## [0.2.3] - 2022-02-16
-- Critical error fixed in Google Authenticator Library
+- Critical error fixed in `Google Authenticator Library`
 
 ## [0.2.2] - 2022-02-16
-- CURD minor bugs fixed  
+- `CURD` minor bugs fixed  
 
 ## [0.2.1] - 2022-02-16
-- Google Authenticator Library Added
-- CURD fully-written and functional
+- `Google Authenticator Library` Added
+- `CURD` fully-written and functional
 
 
 ## [0.2.0] - 2022-02-02
@@ -36,49 +41,49 @@ All changes will be updated here.
 - Issue reported fixed [#2](https://github.com/SyedMuradAliShah/codeigniter-3-files-creator/issues/2)
 
 ## [0.1.8] - 2021-12-12
-- Hook added
+- `Hook` added
 - Some important functions added to helper function
 - Default constructor added to library
 - Open all files after creation.
 
 ## [0.1.7] - 2021-12-07
-- Critical error fixed in crud
-- Language fixed
-- Simple Auth little bit improved
+- Critical error fixed in `crud`
+- `Language` fixed
+- `Simple Auth` little bit improved
 
 ## [0.1.6] - 2021-12-07
-- Template restricted to folder
+- `Template` restricted to folder
 
 ## [0.1.5] - 2021-12-07
-- Response text imporved in template
+- Response text imporved in `template`
 
 ## [0.1.4] - 2021-12-07
 - Functionality improved
-- Template now accept folders
+- `Template` now accept folders
   
 ## [0.1.3] - 2021-12-02
 - Functionality & helping text improved
 - Bug in fixed
-- Migration commands updated
-- New migration add column to table added
-- New migration renew column in table added
+- `Migration` commands updated
+- New `migration add column to table` added
+- New `migration renew column in table` added
 
 ## [0.1.2] - 2021-08-05
 - Minor bugs fix
 
 ## [0.1.1] - 2021-07-17
-- Bug in helper fixed
-- Bug in template fixed
+- Bug in `helper` fixed
+- Bug in `template` fixed
 
 ## [0.1.0] - 2021-07-17
-- Bug in curd fixed
+- Bug in `curd` fixed
 
 ## [0.0.9] - 2021-07-17
-- Minor bug in template fixed
+- Minor bug in `template` fixed
 
 ## [0.0.8] - 2021-07-17
-- Template added
-- Bug in curd fixed
+- `Template` added
+- Bug in `curd` fixed
 
 ## [0.0.7] - 2021-06-08
 - Minor bugs fixed
@@ -87,22 +92,22 @@ All changes will be updated here.
 - Functionality improved
 
 ## [0.0.5] - 2021-04-15
-- Migration added
+- `Migration` added
 
 ## [0.0.4] - 2021-02-27
-- Simple Auth Added
-- Simple Auth API Added
+- `Simple Auth` Added
+- `Simple Auth API` Added
 - Folder selection and creation facility added
-- CRUD Modified
-- Controllers Modified
-- Models Modified
+- `CRUD` Modified
+- `Controllers` Modified
+- `Models` Modified
 
 ## [0.0.3] - 2021-02-25
-- Bug in CRUD fixed.
-- Bug in Helper fixed.
+- Bug in `CRUD` fixed.
+- Bug in `Helper` fixed.
 
 ## [0.0.2] - 2021-02-25
-- CRUD function has been added
+- `CRUD` function has been added
 
 ## [0.0.1] - 2021-02-24
 - Initial release.
