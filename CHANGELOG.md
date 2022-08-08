@@ -3,8 +3,8 @@ All changes will be updated here.
 
 ## [0.2.9] - 2022-07-13
 - `.htaccess` improved
-- `.htaccess` added https and www and non-www version added
-- `.htaccess` if https on, localhost will not use it.
+- `.htaccess` https and www and non-www version added
+- `.htaccess` if https or www on, localhost will not use it.
 
 ## [0.2.8] - 2022-07-13
 - Bug in blank `CRUD` fixed.
