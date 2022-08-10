@@ -12,17 +12,18 @@
 Creating files never been so easy, CI3 Files Creator bring you comands to create necessary with a few step.
 
 **Features**
-- Create view file ✨NEW✨
-- Create library google authentication / authy ✨NEW✨
+- Create REST API Controller file ✨NEW✨
+- Create view file
+- Create library google authentication / authy
 - Create hook
-- Create template 🎯Updated🎯
+- Create template
 - Create migration add table
 - Create migration rename table
 - Create migration add column to table
 - Create migration rename column in table
 - Create simple_auth
 - Create simple_auth_api
-- Create crud (include Model & Controller) 🎯Updated🎯
+- Create crud (include Model & Controller)
 - Create model file
 - Create controller file
 - Create library file
@@ -119,37 +120,46 @@ And that's all.
 
 Press `F1` then type bellow commands
 
-| Command                                 |                                                Function |
-| :-------------------------------------- | ------------------------------------------------------: |
-| `CI3 make:library_google_authenticator` |                          It will create authy library . |
-| `CI3 make:hook`                         |                    It will create hook in hooks folder. |
-| `CI3 make:template`                     |              It will create template in library folder. |
-| `CI3 make:migration:add_table`          |      It will create migration file in migration folder. |
-| `CI3 make:migration:rename_table`       |      It will create migration file in migration folder. |
-| `CI3 make:migration:add_column`         |   It will create migration for adding column to a table |
-|                                         |                               file in migration folder. |
-| `CI3 make:migration:rename_column`      | It will create migration for renaming column in a table |
-|                                         |                               file in migration folder. |
-| `CI3 make:simple_auth`                  |            It will create controller, model of complete |
-|                                         |                                 login and registration. |
-| `CI3 make:simple_auth_api`              |      It will create controller, model of complete login |
-|                                         |           and registration and will return json format. |
-| `CI3 make:crud`                         |   It will create controller, model with crud functions. |
-| `CI3 make:model`                        |                              It will create model file. |
-| `CI3 make:view`                         |                         It will create view file.       |
-| `CI3 make:controller`                   |                         It will create controller file. |
-| `CI3 make:library`                      |          It will create library file in library folder. |
-| `CI3 make:language`                     |        It will create language file in language folder. |
-| `CI3 make:helper`                       |            It will create helper file in helper folder. |
-| `CI3 make:htaccess`                     |                It will create `.htaccess` file in root. |
+| Command                                 |                                                   Function |
+| :-------------------------------------- | ---------------------------------------------------------: |
+| `CI3 make:library_google_authenticator` |                             It will create authy library . |
+| `CI3 make:hook`                         |                       It will create hook in hooks folder. |
+| `CI3 make:template`                     |                 It will create template in library folder. |
+| `CI3 make:migration:add_table`          |         It will create migration file in migration folder. |
+| `CI3 make:migration:rename_table`       |         It will create migration file in migration folder. |
+| `CI3 make:migration:add_column`         |      It will create migration for adding column to a table |
+|                                         |                                  file in migration folder. |
+| `CI3 make:migration:rename_column`      |    It will create migration for renaming column in a table |
+|                                         |                                  file in migration folder. |
+| `CI3 make:simple_auth`                  |               It will create controller, model of complete |
+|                                         |                                    login and registration. |
+| `CI3 make:simple_auth_api`              |         It will create controller, model of complete login |
+|                                         |              and registration and will return json format. |
+| `CI3 make:crud`                         |      It will create controller, model with crud functions. |
+| `CI3 make:api_controller`               | It will create controller for REST API, it has dependency. |
+| `CI3 make:model`                        |                                 It will create model file. |
+| `CI3 make:view`                         |                                  It will create view file. |
+| `CI3 make:controller`                   |                            It will create controller file. |
+| `CI3 make:library`                      |             It will create library file in library folder. |
+| `CI3 make:language`                     |           It will create language file in language folder. |
+| `CI3 make:helper`                       |               It will create helper file in helper folder. |
+| `CI3 make:htaccess`                     |                   It will create `.htaccess` file in root. |
+
+
+
+### Dependencies of API Controller
+  
+ * [application\config\rest.php](https://gist.githubusercontent.com/SyedMuradAliShah/c2b4003128f8ec263a7253efda29f29f/raw/edfd1f9e13504a837095a5e57aa8489ab29667ad/rest.php)
+ * [application\libraries\REST_Controller.php](https://gist.githubusercontent.com/SyedMuradAliShah/c2b4003128f8ec263a7253efda29f29f/raw/edfd1f9e13504a837095a5e57aa8489ab29667ad/REST_Controller.php)
+ * [application\libraries\Format.php](https://gist.githubusercontent.com/SyedMuradAliShah/c2b4003128f8ec263a7253efda29f29f/raw/edfd1f9e13504a837095a5e57aa8489ab29667ad/Format.php)
+ * [application\language\english\rest_controller_lang.php](https://gist.githubusercontent.com/SyedMuradAliShah/c2b4003128f8ec263a7253efda29f29f/raw/edfd1f9e13504a837095a5e57aa8489ab29667ad/rest_controller_lang.php)
+
 
 
 
 > `This repository is public, your contribution will be appricated`.
 
+**You can support me by donating, My USDT.TRC20 Address: TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t**
 
-**You can support me by donating, My Bitcoin Address: 1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS**
 
-[![Donate](https://i.imgur.com/W6ggNR5.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
-
-[![Donate](https://i.imgur.com/2v7VgCu.png)](http://bitcoin:1GPLxZQwzAeWgERvxSe5WMmsMDGiURtQuS)
+<img src="https://i.imgur.com/ZCQGmMj.png" width="200" height="200" />

@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require("path");
 
+const mApiController = require("./commands/mApiController");
 const mView = require("./commands/mView");
 const mGoogleAuthenticator = require("./commands/mGoogleAuthenticator");
 const mHook = require("./commands/mHook");
@@ -37,8 +38,11 @@ function activate(context) {
 	// Now provide the implementation of the command with  registerCommand
 	// The commandId parameter must match the command field in package.json
 	
+	let api_controller = vscode.commands.registerCommand('make.ci3_api_controller', function () {
+		mApiController(vscode, fs, path, pathwork);
+	});
 	let view = vscode.commands.registerCommand('make.ci3_view', function () {
-		mGoogleAuthenticator(vscode, fs, path, pathwork);
+		mView(vscode, fs, path, pathwork);
 	});
 	let library_google_authenticator = vscode.commands.registerCommand('make.ci3_library_google_authenticator', function () {
 		mGoogleAuthenticator(vscode, fs, path, pathwork);
@@ -95,6 +99,7 @@ function activate(context) {
 	});
 
 	
+	context.subscriptions.push(api_controller);
 	context.subscriptions.push(view);
 	context.subscriptions.push(library_google_authenticator);
 	context.subscriptions.push(hook);

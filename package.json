@@ -3,7 +3,7 @@
     "displayName": "Codeigniter 3 Files Creator",
     "description": "Creating files never been so easy, with the help of CI3 Files Creator, you can create auth, crud, model, controller, migration etc with a few clicks.",
     "icon": "assets/icon.png",
-    "version": "0.2.9",
+    "version": "0.3.0",
     "publisher": "SyedMuradAliShah",
     "repository": "https://github.com/SyedMuradAliShah/codeigniter-3-files-creator",
     "author": "Syed Murad Ali Shah <murad@receivemail.org> (http://focdownloads.blogspot.com/)",
@@ -19,6 +19,7 @@
         "Other"
     ],
     "activationEvents": [
+        "onCommand:make.ci3_api_controller",
         "onCommand:make.ci3_view",
         "onCommand:make.ci3_library_google_authenticator",
         "onCommand:make.ci3_hook",
@@ -40,6 +41,10 @@
     "main": "./extension",
     "contributes": {
         "commands": [
+            {
+                "command": "make.ci3_api_controller",
+                "title": " CI3 make:api_controller"
+            },
             {
                 "command": "make.ci3_view",
                 "title": " CI3 make:view"

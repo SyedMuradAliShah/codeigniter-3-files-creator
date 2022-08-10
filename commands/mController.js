@@ -36,16 +36,17 @@ module.exports = function (vscode, fs, path, pathdir) {
                             if (err) throw err;
                             fs.writeFileSync(fd, `<?php 
 defined('BASEPATH') OR exit('No direct script access allowed');
-        
+
 class ${capitalize.capitalize(val)} extends CI_Controller {
 
     public function __construct()
     {
         parent::__construct();
     }
+
     public function index()
     {
-                
+
     }
 }
 
